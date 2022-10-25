@@ -1,8 +1,10 @@
 package data.pass.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
+
 import vault.init.VaultLoader;
+
+import javax.swing.*;
 
 public class ConnectBd {
     /**
@@ -24,5 +26,54 @@ public class ConnectBd {
             return null;
         }
         return con;
+    }
+
+    /**
+     * Execute Query Insert - Using only execute instead executeQuery (select)
+     * @param db Database Name
+     * @param qry String Query
+     * @throws SQLException
+     */
+    public static void execQueryInsert(String db, String qry) throws SQLException {
+        try {
+            Connection con = startConnection_WAuth(db);
+            Statement stmt = con.createStatement();
+            stmt.execute(qry);
+            stmt.closeOnCompletion();
+            con.close();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, "Query Fails. Verify.", "Error in Query", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Query Fail: " + e);
+            System.out.println("Query: " + qry);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Verify if object (table) exist
+     * @param dbName Database Name
+     * @param tableName Table Name
+     * @return boolean
+     */
+    public static boolean executeTableVerification(String dbName, String tableName) {
+        boolean tableExist = false;
+        try {
+            Class.forName(VaultLoader.sqlSerClass);
+            String jdbcUrl = "jdbc:sqlserver://" + VaultLoader.getDefaultHost() + ":" + VaultLoader.getJdbcPort() + ";databaseName=" + dbName + ";integratedSecurity=true";
+            Connection con = DriverManager.getConnection(jdbcUrl);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT OBJECT_ID FROM sys.objects WHERE name = '" + tableName + "';");
+            if (rs != null) {
+                tableExist = true;
+            }
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            JOptionPane.showMessageDialog(null, "Exception: " + e, "Error - SQL Exception", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+        return tableExist;
     }
 }
