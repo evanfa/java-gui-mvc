@@ -1,14 +1,14 @@
 package data.pass.db;
 
-import java.sql.*;
-
-import vault.init.VaultLoader;
+import startup.init.vault.loader.VaultLoader;
 
 import javax.swing.*;
+import java.sql.*;
 
 public class ConnectBd {
     /**
      * Function that returns a connection with the default host and the required Database
+     *
      * @param db DatabaseName
      * @return Connection
      */
@@ -30,7 +30,8 @@ public class ConnectBd {
 
     /**
      * Execute Query Insert - Using only execute instead executeQuery (select)
-     * @param db Database Name
+     *
+     * @param db  Database Name
      * @param qry String Query
      * @throws SQLException
      */
@@ -51,7 +52,8 @@ public class ConnectBd {
 
     /**
      * Verify if object (table) exist
-     * @param dbName Database Name
+     *
+     * @param dbName    Database Name
      * @param tableName Table Name
      * @return boolean
      */

@@ -1,4 +1,4 @@
-package vault.init;
+package startup.init.vault.loader;
 
 public class VaultLoader {
     public static final String DEFAULT_HOST = "localhost";
@@ -12,15 +12,19 @@ public class VaultLoader {
     public static String getDefaultHost() {
         return DEFAULT_HOST;
     }
+
     public static int getJdbcPort() {
         return JDBC_PORT;
     }
+
     public static String getDefaultDb() {
         return DEFAULT_DB;
     }
+
     public static String getDefaultTable() {
         return DEFAULT_TABLE;
     }
+
     public static String getDefaultFolderSite() {
         return DEFAULT_FOLDER_SITE;
     }

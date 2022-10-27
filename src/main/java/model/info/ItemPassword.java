@@ -10,7 +10,7 @@ public class ItemPassword {
     private String userName;
     private String passWord;
     private String date;
-    private ArrayList<String> sites = new ArrayList<String>();
+    private final ArrayList<String> sites = new ArrayList<String>();
 
     public ItemPassword(String userName, String passWord, String date) {
         this.userName = userName;
@@ -42,11 +42,11 @@ public class ItemPassword {
         this.date = date;
     }
 
-    public void addSite(String url){
+    public void addSite(String url) {
         this.sites.add(url);
     }
 
-    public ArrayList<String> getSites(){
+    public ArrayList<String> getSites() {
         return this.sites;
     }
 }
