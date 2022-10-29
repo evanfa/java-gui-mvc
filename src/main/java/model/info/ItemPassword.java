@@ -7,10 +7,10 @@ import java.util.ArrayList;
  */
 public class ItemPassword {
 
+    private final ArrayList<String> sites = new ArrayList<String>();
     private String userName;
     private String passWord;
     private String date;
-    private final ArrayList<String> sites = new ArrayList<String>();
 
     public ItemPassword(String userName, String passWord, String date) {
         this.userName = userName;
