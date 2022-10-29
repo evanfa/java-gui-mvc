@@ -20,12 +20,23 @@ public class InitStartup {
         System.out.println(ptL.getSdttPath());
         System.out.println(ptL.getTopoPath());
          */
+
+        /*
+        1. Load Paths from XML File
+        2. Validate Paths Exists
+        3. Validate DB Connection
+        4. Validate Destination Path Exists
+         */
+
+
     }
 
     public static void main(String[] args) {
         //InitStartup initS = new InitStartup();
 
         POJOLoader ptL = new POJOLoader();
+        //System.out.println(ptL.bl.getTvdrPath());
+
     }
 
 }

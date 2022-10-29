@@ -15,7 +15,8 @@ public class POJOLoader {
     public POJOLoader() {
         JAXBContext jaxbContext = null;
         try {
-            File file = new File("C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\IT\\Java-src\\java-gui-mvc\\src\\main\\java\\startup\\init\\config\\xml\\paths_config.xml");
+            File file = new File("src/main/java/startup/init/config/xml/paths_config.xml");
+
             if (file.exists()) {
                 System.out.println("Exists!");
                 bl = new PathLoader();
