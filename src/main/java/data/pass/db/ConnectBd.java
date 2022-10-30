@@ -15,7 +15,7 @@ public class ConnectBd {
     public static Connection startConnection_WAuth(String db) {
         Connection con = null;
         try {
-            Class.forName(VaultLoader.sqlSerClass);
+            Class.forName(VaultLoader.DEFAULT_JDBC_SQLSERVER);
             System.out.println("Driver Loaded");
             String jdbcUrl = "jdbc:sqlserver://" + VaultLoader.getDefaultHost() + ":" + VaultLoader.getJdbcPort() + ";databaseName=" + db + ";integratedSecurity=true";
             con = DriverManager.getConnection(jdbcUrl);
@@ -60,7 +60,7 @@ public class ConnectBd {
     public static boolean executeTableVerification(String dbName, String tableName) {
         boolean tableExist = false;
         try {
-            Class.forName(VaultLoader.sqlSerClass);
+            Class.forName(VaultLoader.DEFAULT_JDBC_SQLSERVER);
             String jdbcUrl = "jdbc:sqlserver://" + VaultLoader.getDefaultHost() + ":" + VaultLoader.getJdbcPort() + ";databaseName=" + dbName + ";integratedSecurity=true";
             Connection con = DriverManager.getConnection(jdbcUrl);
             Statement stmt = con.createStatement();
