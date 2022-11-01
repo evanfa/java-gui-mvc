@@ -4,9 +4,8 @@ public class VaultLoader {
     public static final String DEFAULT_HOST = "localhost";
     public static final String DEFAULT_DB = "TGNH_TVDR_Permits";
     public static final String DEFAULT_TABLE = "BD_PERMITS";
-    public static final String DEFAULT_SERVER_CLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static final String DEFAULT_FOLDER_SITE = "C:\\Users\\Public\\tempfiles";
     public static final String DEFAULT_JDBC_SQLSERVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    public static final String DEFAULT_FOLDER_SITE = "C:\\Users\\Public\\tempfiles";
     public static final int JDBC_PORT = 1433;
 
     public static String getDefaultHost() {

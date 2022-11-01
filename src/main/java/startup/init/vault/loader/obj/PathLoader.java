@@ -20,9 +20,17 @@ public class PathLoader {
         this.id = id;
     }
 
+    public String getTvdrPath() {
+        return tvdrPath;
+    }
+
     @XmlElement(name = "tvdr_project")
     public void setTvdrPath(String tvdrPath) {
         this.tvdrPath = tvdrPath;
+    }
+
+    public String getTxtlPath() {
+        return txtlPath;
     }
 
     @XmlElement(name = "txtl_project")
@@ -30,30 +38,22 @@ public class PathLoader {
         this.txtlPath = txtlPath;
     }
 
+    public String getSdttPath() {
+        return sdttPath;
+    }
+
     @XmlElement(name = "sdtt_project")
     public void setSdttPath(String sdttPath) {
         this.sdttPath = sdttPath;
     }
 
+    public String getTopoPath() {
+        return topoPath;
+    }
+
     @XmlElement(name = "topo_project")
     public void setTopoPath(String topoPath) {
         this.topoPath = topoPath;
-    }
-
-    public String getTvdrPath() {
-        return tvdrPath;
-    }
-
-    public String getTxtlPath() {
-        return txtlPath;
-    }
-
-    public String getSdttPath() {
-        return sdttPath;
-    }
-
-    public String getTopoPath() {
-        return topoPath;
     }
 
     @Override
