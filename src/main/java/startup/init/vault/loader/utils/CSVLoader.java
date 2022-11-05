@@ -4,6 +4,7 @@ import startup.init.start.InitStartup;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class CSVLoader {
@@ -12,18 +13,17 @@ public class CSVLoader {
     private static final char DEFAULT_QUOTE = '"';
     private static final String COMMA_SEPARATOR = ",";
 
-    public static List<String> getRowStringFromCSVtoList(String csvFilePathPath, int columnInput) throws Exception {
-        List<String> list = new ArrayList<String>();
-        Scanner scanner = new Scanner(new File(csvFilePathPath));
-        while (scanner.hasNext()) {
-            List<String> line = parseLine(scanner.nextLine());
-            list.add(line.get(columnInput));
-            //System.out.println("> "+line);
-        }
 
-        scanner.close();
-        return list;
-    }
+     public  static LinkedList<String> getRowsFromCSVList(String csvFilePathPath, int columnInput) throws FileNotFoundException {
+         LinkedList<String> list = new LinkedList<String>();
+         Scanner scanner = new Scanner(new File(csvFilePathPath));
+         while (scanner.hasNext()) {
+             List<String> line = parseLine(scanner.nextLine());
+             list.add(line.get(columnInput));
+         }
+         scanner.close();
+         return list;
+     }
 
     public static HashMap<Integer, String> getHashIfCoincidenceFound(List<String> inputList, String inputSearchParam) {
         HashMap<Integer, String> map = new HashMap<>();

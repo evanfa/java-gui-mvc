@@ -2,6 +2,7 @@ package startup.init.vault.loader.utils;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 public class SysSettingsLoader {
     private int screenHeight;
@@ -55,5 +56,18 @@ public class SysSettingsLoader {
             flagConfirm = true;
         }
         return flagConfirm;
+    }
+
+    /**
+     * Function that creates a Directory
+     *
+     * @param {String} destDir Path and name of the new folder
+     * @throws IOException
+     */
+    public static void createDirectory(String destDir) throws IOException {
+        File directory = new File(destDir);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
     }
 }

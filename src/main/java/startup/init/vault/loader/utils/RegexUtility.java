@@ -11,8 +11,8 @@ public class RegexUtility {
     /**
      * Function that returns a nested key and filename into Hash Map if the string contains the input parameter
      *
-     * @param inputList
-     * @param inputSearchParam
+     * @param "inputList"
+     * @param "inputSearchParam"
      * @return
      */
     public static HashMap<Integer, String> getHashIfCoincidenceFound(List<String> inputList, String inputSearchParam) {

@@ -8,29 +8,31 @@ import startup.init.vault.loader.utils.CSVLoader;
 import startup.init.vault.loader.utils.SysSettingsLoader;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class InitStartup {
 
     private static final String DEFAULT_CONFIG_XML = "src/main/java/startup/init/config/xml/paths_config.xml";
-    private static final String DEFAULT_FOLDER = "C:\\Users\\Public\\default.xml";
+    private static final String DEFAULT_CSV_FILE = "C:\\Users\\Public\\default.xml";
 
+    private static String DEFAULT_FOLDER = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\DocumentControl\\";
+    private static String NON_FOUND_FOLDER = "C:\\Users\\Public\\";
     private static String DEFAULT_PATH_CSV;
     private static String DEFAULT_PATH_TVDR;
     private static String DEFAULT_PATH_TXTL;
     private static String DEFAULT_PATH_SDTT;
     private static String DEFAULT_PATH_TOPO;
-
     private static int CSV_TOTAL_ROWS;
-    private static List<String> itemsInCsvFile;
+
+    private static LinkedList<String> itemsInCsvFile;
     private static int screenSizeWidth;
     private static int screenSizeHeight;
     private static int totalPathsFound;
     private PathLoader xmlLoader = null;
 
-    public InitStartup() {
+    public InitStartup() throws IOException {
         /*
         1. Load Paths from XML File
         2. Validate Paths Exists
@@ -57,7 +59,6 @@ public class InitStartup {
             pathsList.add(getDefaultPathSdtt());
             pathsList.add(getDefaultPathTopo());
 
-
            for (String item : pathsList) {
                 //System.out.println("Current Path: "+item);
                 if (SysSettingsLoader.fileExistInPath(item)) {
@@ -74,8 +75,8 @@ public class InitStartup {
             System.out.println("Loading " + totalPathsFound + " XML Paths...Done");
 
             try {
-                itemsInCsvFile = new ArrayList<String>();
-                itemsInCsvFile = CSVLoader.getRowStringFromCSVtoList(getDefaultPathCsv(), 0);
+                itemsInCsvFile = new LinkedList<>();
+                itemsInCsvFile = CSVLoader.getRowsFromCSVList(getDefaultPathCsv(), 0);
 
                 if (itemsInCsvFile.size() > 0) {
                     setCsvTotalRows(itemsInCsvFile.size());
@@ -90,8 +91,8 @@ public class InitStartup {
 
 
         } else {
-            JOptionPane.showMessageDialog(null, "Non found xml config file. " + DEFAULT_FOLDER + " Verify.", "XML Not Found", JOptionPane.ERROR_MESSAGE);
-            setDefaultPathCsv(DEFAULT_FOLDER);
+            JOptionPane.showMessageDialog(null, "Non found xml config file. " + DEFAULT_CSV_FILE + " Verify.", "XML Not Found", JOptionPane.ERROR_MESSAGE);
+            setDefaultPathCsv(DEFAULT_CSV_FILE);
         }
 
         if (ConnectBd.executeTableVerification(VaultLoader.getDefaultDb(), VaultLoader.getDefaultTable())) {
@@ -102,6 +103,18 @@ public class InitStartup {
             JOptionPane.showMessageDialog(null, "The connection to Database is not available. Verify.", "DB Verification Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
+
+        /*
+        Verify Destination Path Exist
+         */
+        if(!SysSettingsLoader.folderExistInPath(DEFAULT_FOLDER)){
+            System.out.println("Creation Destination Path.... Done");
+            setDefaultFolderSite(NON_FOUND_FOLDER.concat("\\tempfiles"));
+            SysSettingsLoader.createDirectory(getDefaultFolderSite());
+
+        }
+
+        System.out.println("Destination Folder: "+getDefaultFolderSite());
 
     }
 
@@ -161,7 +174,15 @@ public class InitStartup {
         CSV_TOTAL_ROWS = csvTotalRows;
     }
 
-    public static void main(String[] args) {
+    public static String getDefaultFolderSite() {
+        return DEFAULT_FOLDER;
+    }
+
+    public static void setDefaultFolderSite(String defaultFolderSite) {
+        DEFAULT_FOLDER = defaultFolderSite;
+    }
+
+    public static void main(String[] args) throws IOException {
         InitStartup ptL = new InitStartup();
         //System.out.println(getDefaultPathTvdr() + getDefaultPathTxtl() + getDefaultPathSdtt());
         //System.out.println(getDefaultPathTopo());
