@@ -4,15 +4,18 @@ import data.pass.db.ConnectBd;
 import startup.init.vault.loader.POJOLoader;
 import startup.init.vault.loader.VaultLoader;
 import startup.init.vault.loader.obj.PathLoader;
+import startup.init.vault.loader.utils.CSVLoader;
 import startup.init.vault.loader.utils.SysSettingsLoader;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class InitStartup {
 
     private static final String DEFAULT_CONFIG_XML = "src/main/java/startup/init/config/xml/paths_config.xml";
-    private static final String DEFAULT_FOLDER = "C:\\Users\\Public\\";
+    private static final String DEFAULT_FOLDER = "C:\\Users\\Public\\default.xml";
 
     private static String DEFAULT_PATH_CSV;
     private static String DEFAULT_PATH_TVDR;
@@ -20,10 +23,12 @@ public class InitStartup {
     private static String DEFAULT_PATH_SDTT;
     private static String DEFAULT_PATH_TOPO;
 
-    private PathLoader xmlLoader = null;
-    private ArrayList<String> lstPaths;
+    private static int CSV_TOTAL_ROWS;
+    private static List<String> itemsInCsvFile;
     private static int screenSizeWidth;
     private static int screenSizeHeight;
+    private static int totalPathsFound;
+    private PathLoader xmlLoader = null;
 
     public InitStartup() {
         /*
@@ -33,52 +38,70 @@ public class InitStartup {
         4. Validate Destination Path Exists
          */
 
-        System.out.println("Loading App...");
+        System.out.println("Starting App Launch...Done");
 
         xmlLoader = new PathLoader();
         xmlLoader = POJOLoader.defaultLoaderXMLPaths(DEFAULT_CONFIG_XML);
 
-        if(xmlLoader!=null){
+        if (xmlLoader != null) {
             setDefaultPathCsv(xmlLoader.getTvdrPath());
             setDefaultPathTvdr(xmlLoader.getTvdrPath());
-            setDefaultPathTxtl(xmlLoader.getTxtlPath()) ;
+            setDefaultPathTxtl(xmlLoader.getTxtlPath());
             setDefaultPathSdtt(xmlLoader.getSdttPath());
             setDefaultPathTopo(xmlLoader.getTopoPath());
-            System.out.println("Loading XML Paths...");
-        }else{
+
+            List<String> pathsList = new LinkedList<>();
+            pathsList.add(getDefaultPathCsv());
+            pathsList.add(getDefaultPathTvdr());
+            pathsList.add(getDefaultPathTxtl());
+            pathsList.add(getDefaultPathSdtt());
+            pathsList.add(getDefaultPathTopo());
+
+
+           for (String item : pathsList) {
+                //System.out.println("Current Path: "+item);
+                if (SysSettingsLoader.fileExistInPath(item)) {
+                    totalPathsFound++;
+                }
+            }
+
+            if(totalPathsFound==0){
+                System.out.println("Paths not found!");
+                JOptionPane.showMessageDialog(null, "Non paths were found. Edit xml default file.", "No csv paths found", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+
+            System.out.println("Loading " + totalPathsFound + " XML Paths...Done");
+
+            try {
+                itemsInCsvFile = new ArrayList<String>();
+                itemsInCsvFile = CSVLoader.getRowStringFromCSVtoList(getDefaultPathCsv(), 0);
+
+                if (itemsInCsvFile.size() > 0) {
+                    setCsvTotalRows(itemsInCsvFile.size());
+                }
+
+                System.out.println("Loaded " + getCsvTotalRows() + " records from CSV...");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Failed to load path " + DEFAULT_PATH_CSV, "CSV cannot be loaded", JOptionPane.ERROR_MESSAGE);
+            }
+
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Non found xml config file. " + DEFAULT_FOLDER + " Verify.", "XML Not Found", JOptionPane.ERROR_MESSAGE);
             setDefaultPathCsv(DEFAULT_FOLDER);
         }
 
-        if(ConnectBd.executeTableVerification(VaultLoader.getDefaultDb(), VaultLoader.getDefaultTable())){
+        if (ConnectBd.executeTableVerification(VaultLoader.getDefaultDb(), VaultLoader.getDefaultTable())) {
             //TODO Update "Found Default DB Connection - Testing Connection - Table Exist - Connection Verified
             //TODO Load All Tables and Databases in Engine
-            System.out.println("Loading DB...");
-        }else{
+            System.out.println("Database found...Done");
+        } else {
             JOptionPane.showMessageDialog(null, "The connection to Database is not available. Verify.", "DB Verification Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
-
-        System.out.println("Loading CSV Default...");
-        //if(SysSettingsLoader.fileExistInPath(getDefaultPathCsv())){
-
-
-        if(SysSettingsLoader.fileExistInPath("C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\IT\\Paths-CSV-CopyFiles\\TVDR-dump-totalfiles-permits-13Sep2022.csv")){
-            System.out.println("CSV Source");
-        }
-
-        /*
-        if(SysSettingsLoader.fileExistInPath(getDefaultPathCsv())){
-            System.out.println("Exist CSV Source");
-        }
-        */
-
-
-        /*else{
-            System.out.println("CSV Source Path... "+getDefaultPathCsv());
-            System.out.println("CSV Source... "+SysSettingsLoader.fileExistInPath(getDefaultPathCsv().replace("/","\\")));
-        }*/
-
-
 
     }
 
@@ -122,10 +145,26 @@ public class InitStartup {
         DEFAULT_PATH_TOPO = defaultPathTopo;
     }
 
+    public static List<String> getItemsInCsvFile() {
+        return itemsInCsvFile;
+    }
+
+    public static void setItemsInCsvFile(LinkedList<String> itemsInCsvFile) {
+        InitStartup.itemsInCsvFile = itemsInCsvFile;
+    }
+
+    public static int getCsvTotalRows() {
+        return CSV_TOTAL_ROWS;
+    }
+
+    public static void setCsvTotalRows(int csvTotalRows) {
+        CSV_TOTAL_ROWS = csvTotalRows;
+    }
+
     public static void main(String[] args) {
         InitStartup ptL = new InitStartup();
-        System.out.println(getDefaultPathTvdr() + getDefaultPathTxtl() + getDefaultPathSdtt());
-        System.out.println(getDefaultPathTopo());
+        //System.out.println(getDefaultPathTvdr() + getDefaultPathTxtl() + getDefaultPathSdtt());
+        //System.out.println(getDefaultPathTopo());
     }
 
 }

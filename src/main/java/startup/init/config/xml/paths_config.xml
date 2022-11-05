@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <path_loader id="1">
-    <tvdr_project>C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\IT\\Paths-CSV-CopyFiles\\TVDR-dump-totalfiles-permits-13Sep2022.csv
-    </tvdr_project>
-    <txtl_project>C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\IT\\Paths-CSV-CopyFiles\\TXTL-dump-totalfiles-permits-30Sep2022.csv
-    </txtl_project>
-    <sdtt_project>C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\IT\\Paths-CSV-CopyFiles\\SDTT-dump-totalfiles-permits-3Mar2022.csv
-    </sdtt_project>
-    <topo_project>C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\IT\\Paths-CSV-CopyFiles\\TOPO-dump-totalfiles-permits-6Sep2021.csv
-    </topo_project>
+    <tvdr_project>C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TVDR-dump-totalfiles-permits-13Sep2022.csv</tvdr_project>
+    <txtl_project>C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TXTL-dump-totalfiles-permits-30Sep2022.csv</txtl_project>
+    <sdtt_project>C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/SDTT-dump-totalfiles-permits-3Mar2022.csv</sdtt_project>
+    <topo_project>C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TOPO-dump-totalfiles-permits-6Sep2021.csv</topo_project>
 </path_loader>

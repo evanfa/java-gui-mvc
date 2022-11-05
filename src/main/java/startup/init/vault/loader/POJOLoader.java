@@ -26,7 +26,7 @@ public class POJOLoader {
         try {
             File file = new File(pathDefaultXML);
             if (file.exists()) {
-                System.out.println("XML File - Exists!");
+                //System.out.println("XML File - Exists!");
                 bl = new PathLoader();
                 bl = POJOLoader.unmarshall(Path.of(file.getAbsolutePath()));
                 return bl;

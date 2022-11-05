@@ -9,6 +9,7 @@ public class SysSettingsLoader {
 
     /**
      * Function that return current screen height
+     *
      * @return height
      */
     public static int getScreenHeight() {
@@ -18,6 +19,7 @@ public class SysSettingsLoader {
 
     /**
      * Function that return current screen width
+     *
      * @return width
      */
     public static int getScreenWidth() {
@@ -27,13 +29,14 @@ public class SysSettingsLoader {
 
     /**
      * Function that verify if folder exist.
+     *
      * @param {String} folderPathString
      * @return
      */
-    public static Boolean folderExistInPath(String folderPathString){
+    public static Boolean folderExistInPath(String folderPathString) {
         boolean flagConfirm = false;
         File f = new File(folderPathString);
-        if (f.exists() && f.isDirectory()){
+        if (f.exists() && f.isDirectory()) {
             flagConfirm = true;
         }
         return flagConfirm;
@@ -46,15 +49,8 @@ public class SysSettingsLoader {
      * @return {String} flagConfirm
      */
     public static Boolean fileExistInPath(String filePathString) {
-
-        System.out.println("input: "+filePathString);
         boolean flagConfirm = false;
         File f = new File(filePathString);
-
-        if(f.exists()){
-            System.out.println("Exits input: "+filePathString);
-        }
-
         if (f.exists() && !f.isDirectory()) {
             flagConfirm = true;
         }
