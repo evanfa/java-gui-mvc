@@ -27,6 +27,7 @@ public class InitStartup {
     private static int CSV_TOTAL_ROWS;
 
     private static LinkedList<String> itemsInCsvFile;
+    private static List<String> pathsList;
     private static int screenSizeWidth;
     private static int screenSizeHeight;
     private static int totalPathsFound;
@@ -42,6 +43,9 @@ public class InitStartup {
 
         System.out.println("Starting App Launch...Done");
 
+        System.out.println(SysSettingsLoader.getScreenHeight());
+        System.out.println(SysSettingsLoader.getScreenWidth());
+
         xmlLoader = new PathLoader();
         xmlLoader = POJOLoader.defaultLoaderXMLPaths(DEFAULT_CONFIG_XML);
 
@@ -52,7 +56,7 @@ public class InitStartup {
             setDefaultPathSdtt(xmlLoader.getSdttPath());
             setDefaultPathTopo(xmlLoader.getTopoPath());
 
-            List<String> pathsList = new LinkedList<>();
+            pathsList = new LinkedList<>();
             pathsList.add(getDefaultPathCsv());
             pathsList.add(getDefaultPathTvdr());
             pathsList.add(getDefaultPathTxtl());
@@ -80,15 +84,14 @@ public class InitStartup {
 
                 if (itemsInCsvFile.size() > 0) {
                     setCsvTotalRows(itemsInCsvFile.size());
-                }
 
-                System.out.println("Loaded " + getCsvTotalRows() + " records from CSV...");
+                    System.out.println("Loaded " + getCsvTotalRows() + " records from CSV...Done");
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to load path " + DEFAULT_PATH_CSV, "CSV cannot be loaded", JOptionPane.ERROR_MESSAGE);
             }
-
 
         } else {
             JOptionPane.showMessageDialog(null, "Non found xml config file. " + DEFAULT_CSV_FILE + " Verify.", "XML Not Found", JOptionPane.ERROR_MESSAGE);
@@ -115,7 +118,6 @@ public class InitStartup {
         }
 
         System.out.println("Destination Folder: "+getDefaultFolderSite());
-
     }
 
     public static String getDefaultPathCsv() {
@@ -180,6 +182,10 @@ public class InitStartup {
 
     public static void setDefaultFolderSite(String defaultFolderSite) {
         DEFAULT_FOLDER = defaultFolderSite;
+    }
+
+    public static List<String> getPathsList(){
+        return pathsList;
     }
 
     public static void main(String[] args) throws IOException {

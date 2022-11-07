@@ -1,12 +1,29 @@
 package startup.init.vault.loader.utils;
 
+import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class SysSettingsLoader {
-    private int screenHeight;
-    private int screenWidth;
+    private static int screenHeight;
+    private static int screenWidth;
+    private static JPanel mainPanel;
+
+    /**
+     * Function that returns the current main parent of the GUI
+     * @return JPanel
+     */
+    public static JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    /**
+     * Function that sets the current main parent of the GUI
+     * @param mainPanel
+     */
+    public static void setMainPanel(JPanel mainPanel) {
+       mainPanel = mainPanel;
+    }
 
     /**
      * Function that return current screen height
@@ -70,4 +87,45 @@ public class SysSettingsLoader {
             directory.mkdir();
         }
     }
+
+    /**
+     * Function that copy files.
+     *
+     * @param {File} input
+     * @param {File} output
+     */
+    public static void fileCopier(File input, File output) {
+        try {
+            if (input.exists() && output.exists()) {
+                copyFileUsingStream(input, output);
+            } else JOptionPane.showMessageDialog(null, "File dont exist - Input and/or output");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Function that copy file using stream
+     *
+     * @param {File} source
+     * @param {File} dest
+     * @throws IOException
+     */
+    private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
+
 }

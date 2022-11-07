@@ -1,7 +1,10 @@
 package startup.init.vault.loader.utils;
 
+import model.objects.Record;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -106,4 +109,26 @@ public class CSVProcessor {
         result.add(curVal.toString());
         return result;
     }
+
+    /**
+     * Function that returns a Array List of Records that contains index, filename, path of the inputList that contains
+     * the parameter searched.
+     *
+     * @param inputList
+     * @param inputSearchParam
+     * @return
+     */
+    public static LinkedList<Record> getArrayListResultsIfCoincidenceFound(ArrayList<String> inputList, String inputSearchParam) {
+        LinkedList<Record> rcdS = new LinkedList<>();
+        RegexUtility frU = new RegexUtility();
+        for (int i = 0; i < inputList.size(); i++) {
+            if (frU.findCurrentIncidenteInString(inputList.get(i), inputSearchParam) != null) {
+                File tmp = new File(inputList.get(i));
+                Record rd = new Record(i, tmp.getName(), tmp.getAbsolutePath(),false);
+                rcdS.add(rd);
+            }
+        }
+        return rcdS;
+    }
+
 }

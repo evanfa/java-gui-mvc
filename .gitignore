@@ -1,5 +1,4 @@
 .idea
 out
-src/vault/init/VaultLoader.java
 src/main/java/startup/init/vault/loader/VaultLoader.java
 src/main/java/startup/init/config/xml/paths_config.xml
