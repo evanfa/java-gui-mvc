@@ -26,7 +26,7 @@ public class InitStartup {
     private static String DEFAULT_PATH_TOPO;
     private static int CSV_TOTAL_ROWS;
 
-    private static LinkedList<String> itemsInCsvFile;
+    //private static LinkedList<String> itemsInCsvFile;
     private static List<String> pathsList;
     private static int screenSizeWidth;
     private static int screenSizeHeight;
@@ -78,20 +78,10 @@ public class InitStartup {
 
             System.out.println("Loading " + totalPathsFound + " XML Paths...Done");
 
-            try {
-                itemsInCsvFile = new LinkedList<>();
-                itemsInCsvFile = CSVLoader.getRowsFromCSVList(getDefaultPathCsv(), 0);
-
-                if (itemsInCsvFile.size() > 0) {
-                    setCsvTotalRows(itemsInCsvFile.size());
-
-                    System.out.println("Loaded " + getCsvTotalRows() + " records from CSV...Done");
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Failed to load path " + DEFAULT_PATH_CSV, "CSV cannot be loaded", JOptionPane.ERROR_MESSAGE);
-            }
+            /********+
+             * ********
+             * *******
+             */
 
         } else {
             JOptionPane.showMessageDialog(null, "Non found xml config file. " + DEFAULT_CSV_FILE + " Verify.", "XML Not Found", JOptionPane.ERROR_MESSAGE);
@@ -118,6 +108,23 @@ public class InitStartup {
         }
 
         System.out.println("Destination Folder: "+getDefaultFolderSite());
+    }
+
+    public static LinkedList<String> loadComboBox(String pathInput){
+        LinkedList<String> itemsInCsvFile = new LinkedList<>();
+        try {
+            itemsInCsvFile = CSVLoader.getRowsFromCSVList(pathInput, 0);
+
+            if (itemsInCsvFile.size() > 0) {
+                setCsvTotalRows(itemsInCsvFile.size());
+                System.out.println("Loaded " + getCsvTotalRows() + " records from CSV...Done");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to load path " + DEFAULT_PATH_CSV, "CSV cannot be loaded", JOptionPane.ERROR_MESSAGE);
+        }
+        return itemsInCsvFile;
     }
 
     public static String getDefaultPathCsv() {
@@ -158,14 +165,6 @@ public class InitStartup {
 
     public static void setDefaultPathTopo(String defaultPathTopo) {
         DEFAULT_PATH_TOPO = defaultPathTopo;
-    }
-
-    public static List<String> getItemsInCsvFile() {
-        return itemsInCsvFile;
-    }
-
-    public static void setItemsInCsvFile(LinkedList<String> itemsInCsvFile) {
-        InitStartup.itemsInCsvFile = itemsInCsvFile;
     }
 
     public static int getCsvTotalRows() {

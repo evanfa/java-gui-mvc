@@ -1,12 +1,16 @@
 package view.display.main.form;
 
+import data.pass.colors.ColorsEnum;
 import startup.init.start.InitStartup;
 import startup.init.vault.loader.utils.SysSettingsLoader;
 import view.display.main.imgs.ImgsLoader;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 
 public class SearcherForm extends JFrame{
@@ -28,6 +32,8 @@ public class SearcherForm extends JFrame{
     private JButton downloadButton;
     private JToggleButton btnCSVSearch;
     private JToggleButton btnDBSearch;
+
+
 
     public SearcherForm() {
         setContentPane(mainContainerPanel);
@@ -98,13 +104,23 @@ public class SearcherForm extends JFrame{
 
             }
         });
+
+        selectPathCombobox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED) {
+                    InitStartup.loadComboBox(selectPathCombobox.getSelectedItem().toString());
+                    lblResultInfo.setText("Loaded "+InitStartup.getCsvTotalRows()+" records.");
+                    lblResultInfo.setForeground(ColorsEnum.BLUE_TEMPER.getColor());
+                }
+            }
+        });
     }
     
     public void updateSelectableItems(){
         for (int i = 1; i < InitStartup.getPathsList().size(); i++) {
             selectPathCombobox.addItem(InitStartup.getPathsList().get(i));
         }
-
     }
 
     public void updateAddButton(boolean flag)

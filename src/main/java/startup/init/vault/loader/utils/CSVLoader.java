@@ -37,9 +37,9 @@ public class CSVLoader {
         return map;
     }
 
-    public static Map<Integer, String> getSearchResultMap(String paramToSearch) {
+    public static Map<Integer, String> getSearchResultMap(LinkedList<String> getItemsInCsvFile, String paramToSearch) {
         /* Map Results*/
-        Map<Integer, String> map = RegexUtility.getHashIfCoincidenceFound(InitStartup.getItemsInCsvFile(), paramToSearch);
+        Map<Integer, String> map = RegexUtility.getHashIfCoincidenceFound(getItemsInCsvFile, paramToSearch);
         System.out.println("Map Result Size: " + map.size());
 
         if (map.isEmpty()) {
