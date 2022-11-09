@@ -1,7 +1,5 @@
 package startup.init.vault.loader.utils;
 
-import startup.init.start.InitStartup;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,16 +12,23 @@ public class CSVLoader {
     private static final String COMMA_SEPARATOR = ",";
 
 
-     public  static LinkedList<String> getRowsFromCSVList(String csvFilePathPath, int columnInput) throws FileNotFoundException {
-         LinkedList<String> list = new LinkedList<String>();
-         Scanner scanner = new Scanner(new File(csvFilePathPath));
-         while (scanner.hasNext()) {
-             List<String> line = parseLine(scanner.nextLine());
-             list.add(line.get(columnInput));
-         }
-         scanner.close();
-         return list;
-     }
+    public static LinkedList<String> getRowsFromCSVList(String csvFilePath, int columnInput) throws FileNotFoundException {
+        //System.out.println("Path: " + csvFilePath);
+        LinkedList<String> list = new LinkedList<String>();
+
+        try {
+            Scanner scanner = new Scanner(new File(csvFilePath));
+            //while (scanner.hasNext()) {
+            while (scanner.hasNextLine()) {
+                List<String> line = parseLine(scanner.nextLine());
+                list.add(line.get(columnInput));
+            }
+            scanner.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     public static HashMap<Integer, String> getHashIfCoincidenceFound(List<String> inputList, String inputSearchParam) {
         HashMap<Integer, String> map = new HashMap<>();

@@ -43,9 +43,6 @@ public class InitStartup {
 
         System.out.println("Starting App Launch...Done");
 
-        System.out.println(SysSettingsLoader.getScreenHeight());
-        System.out.println(SysSettingsLoader.getScreenWidth());
-
         xmlLoader = new PathLoader();
         xmlLoader = POJOLoader.defaultLoaderXMLPaths(DEFAULT_CONFIG_XML);
 
@@ -64,7 +61,6 @@ public class InitStartup {
             pathsList.add(getDefaultPathTopo());
 
            for (String item : pathsList) {
-                //System.out.println("Current Path: "+item);
                 if (SysSettingsLoader.fileExistInPath(item)) {
                     totalPathsFound++;
                 }
@@ -77,11 +73,6 @@ public class InitStartup {
             }
 
             System.out.println("Loading " + totalPathsFound + " XML Paths...Done");
-
-            /********+
-             * ********
-             * *******
-             */
 
         } else {
             JOptionPane.showMessageDialog(null, "Non found xml config file. " + DEFAULT_CSV_FILE + " Verify.", "XML Not Found", JOptionPane.ERROR_MESSAGE);
