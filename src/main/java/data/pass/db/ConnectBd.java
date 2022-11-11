@@ -5,6 +5,9 @@ import startup.init.vault.loader.VaultLoader;
 import javax.swing.*;
 import java.sql.*;
 
+/*
+-Djava.library.path="C:\Users\fabio_rodriguez\OneDrive - TransCanada Corporation\Documents\IT\JODBC\sqljdbc_9.4\enu\auth\x64"
+ */
 public class ConnectBd {
     /**
      * Function that returns a connection with the default host and the required Database
@@ -72,8 +75,8 @@ public class ConnectBd {
             stmt.close();
             con.close();
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
-            JOptionPane.showMessageDialog(null, "Exception: " + e, "Error - SQL Exception", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Exception SQL: " + e);
+            JOptionPane.showMessageDialog(null, "SQL Exception: " + e, "Error - SQL Exception", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
         return tableExist;

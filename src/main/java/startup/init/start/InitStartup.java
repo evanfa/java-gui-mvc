@@ -6,6 +6,7 @@ import startup.init.vault.loader.VaultLoader;
 import startup.init.vault.loader.obj.PathLoader;
 import startup.init.vault.loader.utils.CSVLoader;
 import startup.init.vault.loader.utils.SysSettingsLoader;
+import startup.init.vault.loader.utils.URLFileDownloader;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -80,8 +81,6 @@ public class InitStartup {
         }
 
         if (ConnectBd.executeTableVerification(VaultLoader.getDefaultDb(), VaultLoader.getDefaultTable())) {
-            //TODO Update "Found Default DB Connection - Testing Connection - Table Exist - Connection Verified
-            //TODO Load All Tables and Databases in Engine
             System.out.println("Database found...Done");
         } else {
             JOptionPane.showMessageDialog(null, "The connection to Database is not available. Verify.", "DB Verification Error", JOptionPane.ERROR_MESSAGE);
@@ -99,11 +98,16 @@ public class InitStartup {
         }
 
         System.out.println("Destination Folder: "+getDefaultFolderSite());
+
+        URLFileDownloader flD = new URLFileDownloader("https://transcanada.sharepoint.com/sites/bdu_mexico/Shared Documents/2.-PERMISOS/6. Tmz-Ext/DOCUMENTOS/Mayores/2. ASEA/2.2 ETJS/2.2.3 ETJ 2A (Xilitla)/4.-Otorgamiento del Permiso/4.1 133-02-03-236-2013-130914 Autorizacion CUSTF ETJ 2A.pdf","custom");
+        //URLFileDownloader flD = new URLFileDownloader("https://transcanada.sharepoint.com/:b:/r/sites/bdu_mexico/Shared%20Documents/2.-PERMISOS/6.%20Tmz-Ext/DOCUMENTOS/Mayores/2.%20ASEA/2.2%20ETJS/2.2.3%20ETJ%202A%20(Xilitla)/4.-Otorgamiento%20del%20Permiso/4.1%20133-02-03-236-2013-130914%20Autorizacion%20CUSTF%20ETJ%202A.pdf?csf=1&web=1&e=x5gGj8","custom");
     }
 
+    //TODO Change to ArrayList
     public static LinkedList<String> loadComboBox(String pathInput){
         LinkedList<String> itemsInCsvFile = new LinkedList<>();
         try {
+            //TODO Consider change to ArrayList for better cache management
             itemsInCsvFile = CSVLoader.getRowsFromCSVList(pathInput, 0);
 
             if (itemsInCsvFile.size() > 0) {
