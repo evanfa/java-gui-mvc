@@ -1,17 +1,18 @@
 package view.display.main.form;
 
 import data.pass.colors.ColorsEnum;
+import model.functions.StreamSearch;
 import startup.init.start.InitStartup;
 import startup.init.vault.loader.utils.SysSettingsLoader;
 import view.display.main.imgs.ImgsLoader;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SearcherForm extends JFrame{
     private JPanel mainContainerPanel;
@@ -78,6 +79,21 @@ public class SearcherForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
+                System.out.println("Perform Search");
+                System.out.println("-"+inputSearch.getText());
+
+                //SearchExec srch = new SearchExec();
+                //srch.actionAdd(inputSearch.getText());
+
+                ArrayList<String> resultSearch = StreamSearch.execSearchInCSV(inputSearch.getText());
+
+                if(!resultSearch.isEmpty() && resultSearch.size()>0){
+                    System.out.println("Records Found: "+resultSearch.size());
+                }else{
+                    JOptionPane.showMessageDialog(null, "Non Match Found ", "Error - No coincidences found", JOptionPane.ERROR_MESSAGE);
+                }
+
+
             }
         });
 
@@ -109,7 +125,7 @@ public class SearcherForm extends JFrame{
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED) {
-                    InitStartup.loadComboBox(selectPathCombobox.getSelectedItem().toString());
+                    InitStartup.loadTotalRecordsFromCSVFile(selectPathCombobox.getSelectedItem().toString());
                     lblResultInfo.setText("Loaded "+InitStartup.getCsvTotalRows()+" records.");
                     lblResultInfo.setForeground(ColorsEnum.BLUE_TEMPER.getColor());
                 }

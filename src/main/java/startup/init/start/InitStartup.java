@@ -29,6 +29,7 @@ public class InitStartup {
 
     //private static LinkedList<String> itemsInCsvFile;
     private static List<String> pathsList;
+    private static LinkedList<String> recordsInCSVFile;
     private static int screenSizeWidth;
     private static int screenSizeHeight;
     private static int totalPathsFound;
@@ -104,14 +105,15 @@ public class InitStartup {
     }
 
     //TODO Change to ArrayList
-    public static LinkedList<String> loadComboBox(String pathInput){
-        LinkedList<String> itemsInCsvFile = new LinkedList<>();
+    public static LinkedList<String> loadTotalRecordsFromCSVFile(String pathInput){
+        LinkedList<String> itemsInCsvFile = null;//new LinkedList<>();
         try {
             //TODO Consider change to ArrayList for better cache management
             itemsInCsvFile = CSVLoader.getRowsFromCSVList(pathInput, 0);
 
             if (itemsInCsvFile.size() > 0) {
                 setCsvTotalRows(itemsInCsvFile.size());
+                setRecordsInCSVFile(itemsInCsvFile);
                 System.out.println("Loaded " + getCsvTotalRows() + " records from CSV...Done");
             }
 
@@ -180,6 +182,14 @@ public class InitStartup {
 
     public static List<String> getPathsList(){
         return pathsList;
+    }
+
+    public static LinkedList<String> getRecordsInCSVFile() {
+        return recordsInCSVFile;
+    }
+
+    public static void setRecordsInCSVFile(LinkedList<String> recordsInCSVFile) {
+        InitStartup.recordsInCSVFile = recordsInCSVFile;
     }
 
     public static void main(String[] args) throws IOException {

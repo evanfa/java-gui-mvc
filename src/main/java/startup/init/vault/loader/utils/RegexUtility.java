@@ -46,4 +46,16 @@ public class RegexUtility {
         return rtnStr;
     }
 
+    public static String matchInString(String textToReview, String regexCondition) {
+        String rtnStr = null;
+        Pattern pattern = Pattern.compile(regexCondition, Pattern.CASE_INSENSITIVE); //,Pattern.CASE_INSENSITIVE
+        Matcher matcher = pattern.matcher(textToReview);
+        if (matcher.find()) {
+            rtnStr = matcher.group(0);
+            //this.setListOutLetters(matcher.group(2));
+            //this.setListInLetters(matcher.group(3));
+        }
+        return rtnStr;
+    }
+
 }
