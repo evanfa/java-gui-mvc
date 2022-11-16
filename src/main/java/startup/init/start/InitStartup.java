@@ -6,7 +6,6 @@ import startup.init.vault.loader.VaultLoader;
 import startup.init.vault.loader.obj.PathLoader;
 import startup.init.vault.loader.utils.CSVLoader;
 import startup.init.vault.loader.utils.SysSettingsLoader;
-import startup.init.vault.loader.utils.URLFileDownloader;
 
 import javax.swing.*;
 import java.io.IOException;

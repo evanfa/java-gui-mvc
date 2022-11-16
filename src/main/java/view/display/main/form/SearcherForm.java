@@ -78,22 +78,14 @@ public class SearcherForm extends JFrame{
         btnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
-                System.out.println("Perform Search");
-                System.out.println("-"+inputSearch.getText());
-
-                //SearchExec srch = new SearchExec();
-                //srch.actionAdd(inputSearch.getText());
-
                 ArrayList<String> resultSearch = StreamSearch.execSearchInCSV(inputSearch.getText());
-
                 if(!resultSearch.isEmpty() && resultSearch.size()>0){
                     System.out.println("Records Found: "+resultSearch.size());
+
+                    resultSearch.stream().forEach(System.out::println);
                 }else{
                     JOptionPane.showMessageDialog(null, "Non Match Found ", "Error - No coincidences found", JOptionPane.ERROR_MESSAGE);
                 }
-
-
             }
         });
 
