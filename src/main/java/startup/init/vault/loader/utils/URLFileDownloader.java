@@ -53,7 +53,6 @@ public class URLFileDownloader {
         URL url = new URL(urlStr);
         String file = urlStr.substring(urlStr.lastIndexOf("/")+1,urlStr.length());
 
-
         //String agent = java.security.AccessController.doPrivileged(new sun.security.action.GetPropertyAction("http.agent"));
         //BufferedReader bis = new BufferedReader(new InputStreamReader(((HttpURLConnection) (new URL(urlStr)).openConnection()).getInputStream(), Charset.forName("UTF-8")));
 
