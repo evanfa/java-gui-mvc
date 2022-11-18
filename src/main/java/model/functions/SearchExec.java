@@ -42,12 +42,12 @@ public class SearchExec {
 
                 tableModel.setListItemsFound(resultQuery);
 
-                for(Record record: tableModel.getListItemsFound()){
+                /*for(Record record: tableModel.getListItemsFound()){
                     System.out.println("Id: " + record.indexId);
                     System.out.println("File: " + record.fileName);
                     System.out.println("Path: " + record.filePath);
                     System.out.println("Flag: " + record.selectedId);
-                }
+                }*/
 
                 srchResult_JTable.setModel(tableModel);
                 columnModel = srchResult_JTable.getColumnModel();

@@ -28,7 +28,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <toolbar id="c67de">
+              <toolbar id="c67de" binding="pathToolBar">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="20"/>
@@ -74,7 +74,7 @@
                   </component>
                 </children>
               </toolbar>
-              <toolbar id="ec5be">
+              <toolbar id="ec5be" binding="searcherToolBar">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="20"/>
@@ -134,7 +134,7 @@
                       </component>
                     </children>
                   </toolbar>
-                  <toolbar id="3e4cf">
+                  <toolbar id="3e4cf" binding="actionsToolBar">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="-1" height="20"/>
@@ -166,14 +166,21 @@
                       </component>
                     </children>
                   </toolbar>
-                  <component id="98b44" class="javax.swing.JTable" binding="searchResult">
+                  <scrollpane id="273ed" binding="scrollPanelContent">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="50"/>
-                      </grid>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
-                  </component>
+                    <border type="bevel-lowered" title="Matches Found:">
+                      <color color="-4473925"/>
+                    </border>
+                    <children>
+                      <component id="89f21" class="javax.swing.JTable" binding="searchResult">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
               </grid>
             </children>

@@ -106,6 +106,10 @@ public class TableModelTemplate extends AbstractTableModel implements Observer {
         this.downloadList = (ArrayList<Record>) listItemsFound;
     }
 
+    /*public void setListItemsFound(ArrayList<String> listItemsFound) {
+        this.downloadList = listItemsFound;
+    }*/
+
     public List<Record>  getListItemsFound(){
         return this.downloadList;
     }

@@ -56,6 +56,60 @@ public enum ColorsEnum implements Colorful {
         public Color getColor() {
             return new Color(255, 96, 0);
         }
+    },
+    BLACK_DARK {
+        @Override
+        public Color getColor() {
+            return new Color(21, 21, 21);
+        }
+    },
+    BLACK_ONE {
+        @Override
+        public Color getColor() {
+            return new Color(4, 28, 50);
+        }
+    },
+    NAVY_BLACK {
+        @Override
+        public Color getColor() {
+            return new Color(4, 41, 58);
+        }
+    },
+    NAVY_LIGHT {
+        @Override
+        public Color getColor() {
+            return new Color(6, 70, 99);
+        }
+    },
+    NAVY_EXLIGHT {
+        @Override
+        public Color getColor() {
+            return new Color(41, 117, 153);
+        }
+    },
+    ARENA {
+        @Override
+        public Color getColor() {
+            return new Color(236, 179, 101);
+        }
+    },
+    PURPLE_DARK {
+        @Override
+        public Color getColor() {
+            return new Color(48, 27, 63);
+        }
+    },
+    PURPLE_LIGHT {
+        @Override
+        public Color getColor() {
+            return new Color(60, 65, 92);
+        }
+    },
+    GRAY_PURPLE {
+        @Override
+        public Color getColor() {
+            return new Color(180, 165, 165);
+        }
     };
 
     @Override
