@@ -21,6 +21,12 @@ public enum ColorsEnum implements Colorful {
             return new Color(76, 76, 76);
         }
     },
+    DARK_GRAYBLUE {
+        @Override
+        public Color getColor() {
+            return new Color(19, 63, 84);
+        }
+    },
     BLUE_TARO {
         @Override
         public Color getColor() {

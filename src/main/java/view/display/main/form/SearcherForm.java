@@ -12,6 +12,7 @@ import view.display.main.imgs.ImgsLoader;
 
 import javax.swing.*;
 import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -58,14 +59,23 @@ public class SearcherForm extends JFrame{
         /*System Vars*/
         SysSettingsLoader.setMainPanel(mainContainerPanel);
 
+        //UIManager.put("TabbedPane.selected", Color.red);
+        //tabContainerPanel = new JTabbedPane();
+
         /*Tabs Settings*/
         tabContainerPanel.addTab("Fast Search", ImgsLoader.getSearchIcon(), fastSearchForm, null);
         tabContainerPanel.addTab("Config", ImgsLoader.getConfgIcon(), configPanelForm, null);
+        tabContainerPanel.setFocusable(false);
 
         /*Update Buttons*/
         updateAddButton(false);
         updateClearButton(false);
         updateProccessButton(false);
+
+        pathToolBar.setFloatable(false);
+        actionsToolBar.setFloatable(false);
+        searcherToolBar.setFloatable(false);
+        footerToolBar.setFloatable(false);
 
         /*ToggleButton Setting*/
         btnDBSearch.setIcon(ImgsLoader.getServerDbIcon());
@@ -112,13 +122,15 @@ public class SearcherForm extends JFrame{
 
                         /*-------------------SET COLORS-----------------------------*/
 
+                        ColorTemplate.deepBlueMode_JPanel(mainContainerPanel);
                         ColorTemplate.deepBlueMode_JTabbedPanel(tabContainerPanel);
                         ColorTemplate.deepBlueMode_JPanel(fastSearchForm);
                         ColorTemplate.deepBlueMode_JPanel(resultContanierPanel);
 
                         //ColorTemplate.deepBlueMode_JScrollPanel(scrollPanelContent);
 
-
+                        //UIManager.put("TabbedPane.selected", Color.red);
+                        //tabContainerPanel.getSelectedComponent().setFocusable(false);
 
                         /*ColorTemplate.deepBlueMode_JTable(searchResult);
                         ColorTemplate.deepBlueMode_JToolBar(pathToolBar);

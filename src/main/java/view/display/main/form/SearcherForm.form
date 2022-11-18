@@ -83,6 +83,10 @@
                 <properties/>
                 <border type="none"/>
                 <children>
+                  <component id="beb43" class="javax.swing.JToolBar$Separator">
+                    <constraints/>
+                    <properties/>
+                  </component>
                   <component id="d704a" class="javax.swing.JLabel" binding="lblInputSearch">
                     <constraints/>
                     <properties>
@@ -126,6 +130,10 @@
                     <properties/>
                     <border type="none"/>
                     <children>
+                      <component id="fc625" class="javax.swing.JToolBar$Separator">
+                        <constraints/>
+                        <properties/>
+                      </component>
                       <component id="38c8e" class="javax.swing.JLabel" binding="lblResultInfo">
                         <constraints/>
                         <properties>
