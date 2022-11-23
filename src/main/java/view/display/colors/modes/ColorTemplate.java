@@ -1,6 +1,6 @@
-package data.pass.colors.modes;
+package view.display.colors.modes;
 
-import data.pass.colors.ColorsEnum;
+import view.display.colors.ColorsEnum;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +18,6 @@ public class ColorTemplate {
         //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         //SwingUtilities.updateComponentTreeUI(java.awt.Component);
 
-
-
         //System.out.println("Tabs count: "+jT.getTabCount());
         //jT.getSelectedComponent().setBackground(ColorsEnum.DARK_GRAYBLUE.getColor());
         //jT.getSelectedComponent().setBackground(ColorsEnum.ARENA.getColor());
@@ -31,10 +29,8 @@ public class ColorTemplate {
         //System.out.println("Selected Component: "+jT.getSelectedComponent().getName());
 
         for (int i = 0; i < jT.getTabCount(); i++) {
-            jT.setBackgroundAt(i,ColorsEnum.BLACK_ONE.getColor());
-
+            jT.setBackgroundAt(i, ColorsEnum.BLACK_ONE.getColor());
             jT.setForegroundAt(i,Color.WHITE);
-
         }
         //jT.setBackgroundAt();
 

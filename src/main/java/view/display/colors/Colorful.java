@@ -1,4 +1,4 @@
-package data.pass.colors;
+package view.display.colors;
 
 import java.awt.*;
 
