@@ -250,11 +250,8 @@ public class SearcherForm extends JFrame{
         }
     }
 
-
-    public static void main(String[] args) throws IOException {
-
+    /*public static void main(String[] args) throws IOException {
         InitStartup initSart = new InitStartup();
-
         SwingUtilities.invokeLater(() -> {
             JFrame j = new JFrame("Permits Documents Downloader Manager - Ver. 2.1.0.2022");
             j.setContentPane(new SearcherForm().mainContainerPanel);
@@ -264,7 +261,5 @@ public class SearcherForm extends JFrame{
             j.pack();
                 }
         );
-
-    }
-
+    }*/
 }

@@ -84,7 +84,12 @@ public class SysSettingsLoader {
     public static void createDirectory(String destDir) throws IOException {
         File directory = new File(destDir);
         if (!directory.exists()) {
-            directory.mkdir();
+            try {
+                directory.mkdir();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

@@ -6,6 +6,7 @@ import startup.init.vault.loader.VaultLoader;
 import startup.init.vault.loader.obj.PathLoader;
 import startup.init.vault.loader.utils.CSVLoader;
 import startup.init.vault.loader.utils.SysSettingsLoader;
+import view.display.main.form.SearcherForm;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -191,10 +192,9 @@ public class InitStartup {
         InitStartup.recordsInCSVFile = recordsInCSVFile;
     }
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         InitStartup ptL = new InitStartup();
-        //System.out.println(getDefaultPathTvdr() + getDefaultPathTxtl() + getDefaultPathSdtt());
-        //System.out.println(getDefaultPathTopo());
-    }
-
+        System.out.println(getDefaultPathTvdr() + getDefaultPathTxtl() + getDefaultPathSdtt());
+        System.out.println(getDefaultPathTopo());
+    }*/
 }

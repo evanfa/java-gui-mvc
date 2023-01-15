@@ -54,4 +54,14 @@ public class FilesCopier {
             e.printStackTrace();
         }
     }
+
+    public static Boolean fileExistInPath(String filePathString) {
+        boolean flagConfirm = false;
+        File f = new File(filePathString);
+
+        if (f.exists() && !f.isDirectory()) {
+            flagConfirm = true;
+        }
+        return flagConfirm;
+    }
 }
