@@ -7,6 +7,7 @@ import startup.init.vault.loader.utils.FilesCopier;
 import startup.init.vault.loader.utils.RegexUtility;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,9 +26,18 @@ import java.util.List;
  */
 public class SearchCSVandCopy {
     static final String CSV_PATH_INPUT = "C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TVDR-NorthFiles_CFE.csv";
-    static final String PATH_FILE_DESTINATION = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\PermisosTramosPendientes\\Files-Pendientes\\licencias\\NorthZone-Files\\test\\";
+    //static final String CSV_PATH_INPUT = "C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TVDR-NorthFiles_SJR.csv";
+    //static final String CSV_PATH_INPUT = "C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TVDR-NorthFiles_MLV1003-LaLira.csv";
+    //static final String CSV_PATH_INPUT = "C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TVDR-NorthFiles_ElMarques.csv";
+
+    static final String PATH_FILE_DESTINATION = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\PermisosTramosPendientes\\Files-Pendientes\\licencias\\NorthZone-Files\\";
+    //static final String PATH_FILE_DESTINATION = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\PermisosTramosPendientes\\Files-Pendientes\\licencias\\NorthZone-Files\\SanJuanDelRio\\";
+    //static final String PATH_FILE_DESTINATION = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\PermisosTramosPendientes\\Files-Pendientes\\licencias\\NorthZone-Files\\ElMarques\\";
+    //static final String PATH_FILE_DESTINATION = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\PermisosTramosPendientes\\Files-Pendientes\\licencias\\NorthZone-Files\\Cruces\\MLV1003-LaLira\\";
+
     static final String TVDR_INCOMING = "(tvdr)-([a-zA-Z-]*)-(tgnh)-([0-9]*)-([0-9a-zA-Z-]*)";
-    static final String CROSS_ID = "[PR]-(?:[^TGNH][^CFEP]).[-0-9A-Z]*"; //"[P]-[-0-9A-Z]*";
+    //static final String CROSS_ID = "[PR]-(?:[^TGNH][^CFEP]).[-0-9A-Z]*"; //"[P]-[-0-9A-Z]*";
+    static final String CROSS_ID = "[QW]-(?:[^TGNH][^CFEP]).[-0-9A-Z]*"; //"[P]-[-0-9A-Z]*";
     static final String FILENET_ID = "1,\\d{3},\\d{3},\\d{3}";
 
     public static void main(String[] args) throws Exception {
@@ -39,6 +49,8 @@ public class SearchCSVandCopy {
         HashMap<String, String> comsMap = new HashMap<>();
         ArrayList<Record> resultSearch;
 
+        int totalFilesCopied = 0;
+
         try {
             InitStartup.loadTotalRecordsFromCSVFile("C:/Users/fabio_rodriguez/OneDrive - TransCanada Corporation/Documents/IT/Paths-CSV-CopyFiles/TVDR-dump-totalfiles-permits-10Jan2023.csv");
 
@@ -49,7 +61,8 @@ public class SearchCSVandCopy {
                 String idFound = rgxUtil.findCurrentIncidenteInString(infoCommunications.get(i), CROSS_ID);
 
                 /*Finding Valid CrossID in the description of the list*/
-                if (idFound != null) {
+                //if (idFound != null) {
+                    if (idFound == null) {
                     /* Creating a Record Object and adding it to ArrayList*/
                     resultSearch = StreamSearch.execSearchInCSVtoRecord(listCommunications.get(i));
 
@@ -62,7 +75,10 @@ public class SearchCSVandCopy {
                                 if (rgxUtil.findCurrentIncidenteInString(resultSearch.get(rx).getFileName(), listCommunications.get(i)) != null) {
                                     //System.out.println("Match: "+resultSearch.get(rx).getFileName());
                                     String newFileName = resultSearch.get(rx).getFileName();
-                                    newFileName = newFileName.replace(".pdf", "_").concat(idFound).concat(".pdf");
+
+                                    //IS NOT CROSS
+                                    //newFileName = newFileName.replace(".pdf", "_").concat(idFound).concat(".pdf");
+                                    newFileName = newFileName.replace(".pdf", "_").concat(infoCommunications.get(i)).concat(".pdf");
                                     newFileName = newFileName.replace(" - ", "");
                                     newFileName = newFileName.replace("- ", "");
                                     newFileName = newFileName.replace(" ", "");
@@ -71,8 +87,10 @@ public class SearchCSVandCopy {
 
                                     if (!FilesCopier.fileExistInPath(PATH_FILE_DESTINATION.concat(newFileName))) {
                                         FilesCopier.fileCopier(new File(resultSearch.get(rx).getFilePath()), new File(PATH_FILE_DESTINATION.concat(newFileName)));
+                                        totalFilesCopied++;
                                     }
                                     System.out.println("Done: " + PATH_FILE_DESTINATION.concat(newFileName));
+                                    System.out.println("Total Files Copied: "+totalFilesCopied);
                                 }
                             }
                         }
