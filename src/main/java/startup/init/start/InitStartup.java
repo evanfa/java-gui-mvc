@@ -6,7 +6,6 @@ import startup.init.vault.loader.VaultLoader;
 import startup.init.vault.loader.obj.PathLoader;
 import startup.init.vault.loader.utils.CSVLoader;
 import startup.init.vault.loader.utils.SysSettingsLoader;
-import view.display.main.form.SearcherForm;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -23,9 +22,9 @@ public class InitStartup {
     public static final String DEFAULT_BD_NAME = "SQL_Dumps";
     public static final String SERVER_CLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
-    public static String DEFAULT_TABLE_COMS = "library_db";
-    public static String DEFAULT_TABLE_REPORT = "library_db";
-    public static String DEFAULT_ERROR_LOG = "error_log_db";
+    public static String DEFAULT_TABLE_COMS = "library_db_test";
+    public static String DEFAULT_TABLE_REPORT = "library_db_test";
+    public static String DEFAULT_ERROR_LOG = "error_log_db_test";
 
     public static final String DEFAULT_FOLDER_SITE = "C:\\Users\\Public\\tempfiles";
     public static String DEFAULT_PATH_COMS = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\Bitacoras\\29Apr22\\";

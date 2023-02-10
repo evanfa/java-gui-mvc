@@ -1,13 +1,13 @@
 package view.display.main.form;
 
-import view.display.colors.ColorsEnum;
-import view.display.colors.modes.ColorTemplate;
 import model.JTableTemplate_Download;
 import model.TableModelTemplate;
 import model.functions.search.StreamSearch;
 import model.objects.Record;
 import startup.init.start.InitStartup;
 import startup.init.vault.loader.utils.SysSettingsLoader;
+import view.display.colors.ColorsEnum;
+import view.display.colors.modes.ColorTemplate;
 import view.display.imgs.ImgsLoader;
 
 import javax.swing.*;

@@ -4,6 +4,8 @@ import data.pass.db.ConnectBd;
 import model.objects.CommRecord;
 import org.apache.poi.ss.usermodel.*;
 import startup.init.start.InitStartup;
+import startup.init.vault.loader.utils.POIApacheDataProcessor;
+import startup.init.vault.loader.utils.RegexUtility;
 
 import javax.swing.*;
 import java.io.File;
@@ -13,10 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
-
-import startup.init.start.InitStartup;
-import startup.init.vault.loader.utils.POIApacheDataProcessor;
-import startup.init.vault.loader.utils.RegexUtility;
 
 public class BulkLogBook {
 
@@ -147,6 +145,10 @@ public class BulkLogBook {
             JOptionPane.showMessageDialog(null, "No files in folder: " + InitStartup.DEFAULT_PATH_COMS + ". Verify.", "Files not found", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        BulkLogBook bLogProcessing = new BulkLogBook();
+    }
+
 }
