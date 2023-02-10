@@ -1,4 +1,4 @@
-package model.functions;
+package model.functions.search;
 
 import model.objects.Record;
 import startup.init.start.InitStartup;
@@ -17,7 +17,7 @@ public class StreamSearch {
         InitStartup.getRecordsInCSVFile().parallelStream().forEach(
                 item->
                 {
-                    if (RegexUtility.matchInString(item, searchString)!=null) {
+                    if (RegexUtility.matchTextInString(item, searchString)!=null) {
                         searchResultList.add(item);
                     }
                 }
@@ -31,7 +31,7 @@ public class StreamSearch {
         InitStartup.getRecordsInCSVFile().parallelStream().forEach(
                 item->
                 {
-                    if (RegexUtility.matchInString(item, searchString)!=null) {
+                    if (RegexUtility.matchTextInString(item, searchString)!=null) {
                         searchResultList.add(new Record(getIndex(),item.substring(item.lastIndexOf("\\")+1,item.length()), item, false));
                     }
                 }

@@ -1,5 +1,6 @@
 package model.functions;
 
+import model.functions.search.StreamSearch;
 import model.objects.Record;
 import startup.init.start.InitStartup;
 import startup.init.vault.loader.utils.CSVProcessor;
@@ -7,7 +8,6 @@ import startup.init.vault.loader.utils.FilesCopier;
 import startup.init.vault.loader.utils.RegexUtility;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +58,7 @@ public class SearchCSVandCopy {
             infoCommunications = CSVProcessor.getRowStringFromCSVtoList(CSV_PATH_INPUT, 1);
 
             for (int i = 0; i < listCommunications.size(); i++) {
-                String idFound = rgxUtil.findCurrentIncidenteInString(infoCommunications.get(i), CROSS_ID);
+                String idFound = rgxUtil.matchTextInString(infoCommunications.get(i), CROSS_ID);
 
                 /*Finding Valid CrossID in the description of the list*/
                 //if (idFound != null) {
@@ -72,7 +72,7 @@ public class SearchCSVandCopy {
                             int lastIndexOf = resultSearch.get(rx).getFileName().lastIndexOf(".");
                             /* Filtering only for pdf files avoiding xlsx or kmz that contains filename in path */
                             if (resultSearch.get(rx).getFileName().substring(lastIndexOf).equals(".pdf")) {
-                                if (rgxUtil.findCurrentIncidenteInString(resultSearch.get(rx).getFileName(), listCommunications.get(i)) != null) {
+                                if (rgxUtil.matchTextInString(resultSearch.get(rx).getFileName(), listCommunications.get(i)) != null) {
                                     //System.out.println("Match: "+resultSearch.get(rx).getFileName());
                                     String newFileName = resultSearch.get(rx).getFileName();
 

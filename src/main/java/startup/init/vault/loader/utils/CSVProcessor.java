@@ -122,7 +122,7 @@ public class CSVProcessor {
         LinkedList<Record> rcdS = new LinkedList<>();
         RegexUtility frU = new RegexUtility();
         for (int i = 0; i < inputList.size(); i++) {
-            if (frU.findCurrentIncidenteInString(inputList.get(i), inputSearchParam) != null) {
+            if (frU.matchTextInString(inputList.get(i), inputSearchParam) != null) {
                 File tmp = new File(inputList.get(i));
                 Record rd = new Record(i, tmp.getName(), tmp.getAbsolutePath(),false);
                 rcdS.add(rd);

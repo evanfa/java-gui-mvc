@@ -1,4 +1,4 @@
-package model.functions;
+package model.functions.secure;
 
 public class DataManagement {
 

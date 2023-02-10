@@ -18,6 +18,19 @@ public class InitStartup {
     private static final String DEFAULT_CONFIG_XML = "src/main/java/startup/init/config/xml/paths_config.xml";
     private static final String DEFAULT_CSV_FILE = "C:\\Users\\Public\\default.xml";
 
+    public static final String DEFAULT_HOST = "localhost";
+    public static final int JDBC_PORT = 1433;
+    public static final String DEFAULT_BD_NAME = "SQL_Dumps";
+    public static final String SERVER_CLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+
+    public static String DEFAULT_TABLE_COMS = "library_db";
+    public static String DEFAULT_TABLE_REPORT = "library_db";
+    public static String DEFAULT_ERROR_LOG = "error_log_db";
+
+    public static final String DEFAULT_FOLDER_SITE = "C:\\Users\\Public\\tempfiles";
+    public static String DEFAULT_PATH_COMS = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\Bitacoras\\29Apr22\\";
+    public static String REGEX_META_COM = "(([A-Z]{3,4})-([A-Z]{3,4})-[a-zA-Z]*-([0-9]*)-([0-9]*[^_-a-zA-Z.\\/ ]))";
+
     private static String DEFAULT_FOLDER = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\DocumentControl\\";
     private static String NON_FOUND_FOLDER = "C:\\Users\\Public\\";
     private static String DEFAULT_PATH_CSV;
@@ -27,13 +40,28 @@ public class InitStartup {
     private static String DEFAULT_PATH_TOPO;
     private static int CSV_TOTAL_ROWS;
 
-    //private static LinkedList<String> itemsInCsvFile;
+    /* -------------------------------------------- */
+    /*          Data Loader of CSV Files            */
+    /* -------------------------------------------- */
     private static List<String> pathsList;
     private static LinkedList<String> recordsInCSVFile;
-    private static int screenSizeWidth;
-    private static int screenSizeHeight;
     private static int totalPathsFound;
     private PathLoader xmlLoader = null;
+
+    private static int screenSizeWidth;
+    private static int screenSizeHeight;
+
+    /* -------------------------------------------- */
+    /*          Date REGEX Patter Setup             */
+    /* -------------------------------------------- */
+    public static final String REGEX_DATE_OK = "([0-9]{4})-([0-9]{2})-([0-9]{2})";
+    public static final String REGEX_DATE_ENG = "((January|Febuary|March|April|May|June|July|August|September|October|November|" +
+            "December|Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Septiembrre|Saptiembre|Octubre|Octubr|Ocutubre|Noviembre|Diciembre|Decembere).([0-9]{1,2}).*(\\d{2,4}))";
+    public static final String REGEX_DATE_RENG = "((\\d{4}).([0-9]{1,2}).*(January|Febuary|March|April|May|June|July|August|September|October" +
+            "|November|December|Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Septiembrre|Octubre|Noviembre|Diciembre|Decembere))";
+    public static final String REGEX_DATE_DDMMMMYY = "(([0-9]{1,2}).(January|Febuary|March|April|May|June|July|August|September|October|November|December|Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|" +
+            "Septiembrre|Octubre|Noviembre|Diciembre|Decembere|Ene|Jan|Feb|Mar|Abr|Apr|May|Jun|Jul|Aug|Ago|Sep|Oct|Nov|Dec|Dic).([0-9]{1,2}))";
+    public static final String REGEX_DATE_DDMMYY = "((\\d{1,2})[-\\/](\\d{1,2})[-\\/](\\d{1,2}))";
 
     public InitStartup() throws IOException {
         /*
@@ -97,9 +125,7 @@ public class InitStartup {
             SysSettingsLoader.createDirectory(getDefaultFolderSite());
 
         }
-
         System.out.println("Destination Folder: "+getDefaultFolderSite());
-
         //URLFileDownloader flD = new URLFileDownloader("https://transcanada.sharepoint.com/sites/bdu_mexico/Shared Documents/2.-PERMISOS/6. Tmz-Ext/DOCUMENTOS/Mayores/2. ASEA/2.2 ETJS/2.2.3 ETJ 2A (Xilitla)/4.-Otorgamiento del Permiso/4.1 133-02-03-236-2013-130914 Autorizacion CUSTF ETJ 2A.pdf","custom");
         //URLFileDownloader flD = new URLFileDownloader("https://transcanada.sharepoint.com/:b:/r/sites/bdu_mexico/Shared%20Documents/2.-PERMISOS/6.%20Tmz-Ext/DOCUMENTOS/Mayores/2.%20ASEA/2.2%20ETJS/2.2.3%20ETJ%202A%20(Xilitla)/4.-Otorgamiento%20del%20Permiso/4.1%20133-02-03-236-2013-130914%20Autorizacion%20CUSTF%20ETJ%202A.pdf?csf=1&web=1&e=x5gGj8","custom");
     }

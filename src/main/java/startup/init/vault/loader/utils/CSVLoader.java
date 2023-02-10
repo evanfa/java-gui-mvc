@@ -34,7 +34,7 @@ public class CSVLoader {
         HashMap<Integer, String> map = new HashMap<>();
         RegexUtility frU = new RegexUtility();
         for (int i = 0; i < inputList.size(); i++) {
-            if (frU.findCurrentIncidenteInString(inputList.get(i), inputSearchParam) != null) {
+            if (frU.matchTextInString(inputList.get(i), inputSearchParam) != null) {
                 File tmp = new File(inputList.get(i));
                 map.put(i, tmp.getName());
             }

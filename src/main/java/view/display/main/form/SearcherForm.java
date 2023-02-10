@@ -4,7 +4,7 @@ import view.display.colors.ColorsEnum;
 import view.display.colors.modes.ColorTemplate;
 import model.JTableTemplate_Download;
 import model.TableModelTemplate;
-import model.functions.StreamSearch;
+import model.functions.search.StreamSearch;
 import model.objects.Record;
 import startup.init.start.InitStartup;
 import startup.init.vault.loader.utils.SysSettingsLoader;
@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearcherForm extends JFrame{
