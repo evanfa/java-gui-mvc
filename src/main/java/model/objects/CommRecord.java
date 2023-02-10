@@ -1,5 +1,8 @@
 package model.objects;
 
+import startup.init.start.InitStartup;
+import startup.init.vault.loader.utils.RegexUtility;
+
 public class CommRecord {
     public String idMatrix;
     public String folioComm;
@@ -33,7 +36,23 @@ public class CommRecord {
     }
 
     public void setDateComm(String dateComm) {
-        this.dateComm = dateComm;
+        //this.dateComm = dateComm;
+        if (dateComm != null) {
+            /*  If Date is in Correct Format    */
+            if (RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_DATE_OK, dateComm)) {
+                this.dateComm = dateComm;
+                /*  If Date is NOT in Correct Format, Fix the String    */
+            } else {
+                //TODO Verify when is possible fix date format and if not replacer
+                if (RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_DATE_OK, RegexUtility.fixEnglishDateFormatToSQLDateFormat(dateComm))) {
+                    this.dateComm = RegexUtility.fixEnglishDateFormatToSQLDateFormat(dateComm);
+                } else {
+                    this.dateComm = "";
+                }
+            }
+        } else {
+            this.dateComm = "";
+        }
     }
 
     public String getDateReceipt() {
@@ -41,7 +60,23 @@ public class CommRecord {
     }
 
     public void setDateReceipt(String dateReceipt) {
-        this.dateReceipt = dateReceipt;
+        //this.dateReceipt = dateReceipt;
+        if (dateReceipt != null) {
+            /*  If Date is in Correct Format    */
+            if (RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_DATE_OK, dateReceipt)) {
+                this.dateReceipt = dateReceipt;
+                /*  If Date is NOT in Correct Format, Fix the String    */
+            } else {
+                //TODO Verify when is possible fix date format and if not replacer
+                if (RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_DATE_OK, RegexUtility.fixEnglishDateFormatToSQLDateFormat(dateReceipt))) {
+                    this.dateReceipt = RegexUtility.fixEnglishDateFormatToSQLDateFormat(dateReceipt);
+                } else {
+                    this.dateReceipt = "";
+                }
+            }
+        } else {
+            this.dateReceipt = "";
+        }
     }
 
     public String getTypeComm() {
@@ -49,7 +84,12 @@ public class CommRecord {
     }
 
     public void setTypeComm(String typeComm) {
-        this.typeComm = typeComm;
+        //this.typeComm = typeComm;
+        if (typeComm != null) {
+            this.typeComm = typeComm;
+        } else {
+            this.typeComm = "";
+        }
     }
 
     public String getSubjectComm() {
@@ -77,7 +117,12 @@ public class CommRecord {
     }
 
     public void setOriginalReceived(String originalReceived) {
-        this.originalReceived = originalReceived;
+        //this.originalReceived = originalReceived;
+        if (originalReceived != null) {
+            this.originalReceived = originalReceived;
+        } else {
+            this.originalReceived = "";
+        }
     }
 
     public String getCommentsComm() {
@@ -93,7 +138,12 @@ public class CommRecord {
     }
 
     public void setReferenceComm(String referenceComm) {
-        this.referenceComm = referenceComm;
+        //this.referenceComm = referenceComm;
+        if (referenceComm != null) {
+            this.referenceComm = referenceComm;
+        } else {
+            this.referenceComm = "";
+        }
     }
 
     public CommRecord(){
