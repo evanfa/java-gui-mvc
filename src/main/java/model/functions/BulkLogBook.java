@@ -69,7 +69,7 @@ public class BulkLogBook {
                                     while (cellIterator.hasNext()) {
                                         Cell cell = cellIterator.next();
 
-                                        if (cell.getRowIndex() >= 7) {
+                                        if (cell.getRowIndex() >= 6) {
                                             if (cell.getColumnIndex() == 0) {
                                                 setValidRecord(RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_META_COM, cell.toString()));
                                             }
@@ -109,6 +109,9 @@ public class BulkLogBook {
                                     }
 
                                     if (isValidRecord()) {
+
+
+
                                         String query = insertQry + "'" +
                                                 commItem.getFolioComm() + "','" +
                                                 commItem.getDateComm() + "','" +
