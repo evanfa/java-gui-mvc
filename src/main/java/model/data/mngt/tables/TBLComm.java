@@ -1,7 +1,7 @@
 package model.data.mngt.tables;
 
-import controller.utils.Regex_Utility;
-import vault.global.vars.GlobalVarsValues;
+import startup.init.start.InitStartup;
+import startup.init.vault.loader.utils.RegexUtility;
 
 public class TBLComm {
     private String idCom;
@@ -57,14 +57,14 @@ public class TBLComm {
         /* Input String is not empty */
         if (dateCom != null) {
             /*  If Date is in Correct Format    */
-            if (Regex_Utility.isRegexContainedIntoSingleString(GlobalVarsValues.REGEX_DATE_OK, dateCom)) {
+            if (RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_DATE_OK, dateCom)) {
                 this.dateCom = dateCom;
                 /*  If Date is NOT in Correct Format, Fix the String    */
             } else {
                 //TODO Verify when is possible fix date format and if not replacer
 
-                if (Regex_Utility.isRegexContainedIntoSingleString(GlobalVarsValues.REGEX_DATE_OK, Regex_Utility.fixEnglishDateFormatToSQLDateFormat(dateCom))) {
-                    this.dateCom = Regex_Utility.fixEnglishDateFormatToSQLDateFormat(dateCom);
+                if (RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_DATE_OK, RegexUtility.fixEnglishDateFormatToSQLDateFormat(dateCom))) {
+                    this.dateCom = RegexUtility.fixEnglishDateFormatToSQLDateFormat(dateCom);
                 } else {
                     this.dateCom = "";
                 }
@@ -81,11 +81,11 @@ public class TBLComm {
     public void setDateRecepit(String dateRecepit) {
         if (dateRecepit != null) {
             /*  If Date is in Correct Format    */
-            if (Regex_Utility.isRegexContainedIntoSingleString(GlobalVarsValues.REGEX_DATE_OK, dateRecepit)) {
+            if (RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_DATE_OK, dateRecepit)) {
                 this.dateRecepit = dateRecepit;
                 /*  If Date is NOT in Correct Format, Fix the String    */
             } else {
-                this.dateRecepit = Regex_Utility.fixEnglishDateFormatToSQLDateFormat(dateRecepit);
+                this.dateRecepit = RegexUtility.fixEnglishDateFormatToSQLDateFormat(dateRecepit);
             }
         } else {
             this.dateRecepit = "";
