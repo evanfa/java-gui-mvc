@@ -27,12 +27,15 @@ public class InitStartup {
     public static String DEFAULT_ERROR_LOG = "error_log_db_test";
 
     public static final String DEFAULT_FOLDER_SITE = "C:\\Users\\Public\\tempfiles";
-    public static String DEFAULT_PATH_COMS = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\Bitacoras\\29Apr22\\";
-    public static String PATH_FILE_BITACORAS = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\Bitacoras\\16Apr20\\TVDR-dump-files-18Apr20.csv";
+    public static String DEFAULT_PATH_COMS = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\Bitacoras\\15Feb23\\files\\";
+    public static String PATH_FILE_BITACORAS = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\TGNH\\TVDR_Project\\Bitacoras\\15Feb23\\TVDR-dump-files-15Feb23.csv";
     public static String REGEX_META_COM = "(([A-Z]{3,4})-([A-Z]{3,4})-[a-zA-Z]*-([0-9]*)-([0-9]*[^_-a-zA-Z.\\/ ]))";
 
     private static String DEFAULT_FOLDER = "C:\\Users\\fabio_rodriguez\\OneDrive - TransCanada Corporation\\Documents\\DocumentControl\\";
     private static String NON_FOUND_FOLDER = "C:\\Users\\Public\\";
+
+    public static final String DEFAULT_FILE_EXTESION = ".xls";
+
     private static String DEFAULT_PATH_CSV;
     private static String DEFAULT_PATH_TVDR;
     private static String DEFAULT_PATH_TXTL;
