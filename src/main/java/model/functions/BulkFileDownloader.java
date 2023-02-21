@@ -5,10 +5,8 @@ import startup.init.vault.loader.utils.CSVProcessor;
 import startup.init.vault.loader.utils.FilesCopier;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BulkFileDownloader {
     
@@ -33,7 +31,6 @@ public class BulkFileDownloader {
 
                     if(fileName.substring(lastIndexOf).equals(InitStartup.DEFAULT_FILE_EXTESION)){
                         if (!FilesCopier.fileExistInPath(InitStartup.DEFAULT_PATH_COMS.concat(fileName))) {
-                            //FilesCopier.fileCopier(new File(lstComm), new File(InitStartup.DEFAULT_PATH_COMS.concat(fileName)));
                             FilesCopier.generateCopyFileInPath(lstComm,InitStartup.DEFAULT_PATH_COMS.concat(counter+"_").concat(fileName));
                             counter++;
                         }

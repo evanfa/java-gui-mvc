@@ -1,5 +1,6 @@
 package data.pass.db;
 
+import startup.init.start.InitStartup;
 import startup.init.vault.loader.VaultLoader;
 
 import javax.swing.*;
@@ -65,10 +66,24 @@ public class ConnectBd {
             stmt.execute(qry);
             stmt.closeOnCompletion();
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(null, "Query Fails. Verify.", "Error in Query", JOptionPane.ERROR_MESSAGE);
-            System.out.println("Query Fail: " + e);
-            System.out.println("Query: " + qry);
-            e.printStackTrace();
+            /*
+            If Query Contains Errors
+             */
+            {
+                String qrt = null;
+                String errorQry = e.toString();
+                Connection cn = startConnection_WAuth(InitStartup.DEFAULT_BD_NAME);
+                Statement st = cn.createStatement();
+
+                qrt = "INSERT INTO [dbo].["+InitStartup.DEFAULT_ERROR_LOG+"](errordesc,inputdesc) VALUES (´" + errorQry + "´,´" + qry + "´)";
+                qrt = qrt.replace("'", "");
+                qrt = qrt.replace("´", "'");
+
+                System.out.println("Error Query: " + qrt);
+                st.execute(qry);
+                st.closeOnCompletion();
+                cn.close();
+            }
         }
     }
 
