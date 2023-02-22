@@ -8,8 +8,8 @@ Four modules were created:
 
 |Module                |Description                          |Class                        |
 |----------------|-------------------------------|-----------------------------|
-|Search|`'Call a GUI for Search in CSV Files. Previously listed in .xml file.'`            |'GUIRunner'            |
-|Bulk Download          |`Performed a file bulk download.`            |"BulFileDownload"            |
+|Search|`'Call a GUI for Search in CSV Files. Previously listed in .xml file.'`            |GUIRunner            |
+|Bulk Download          |`Performed a file bulk download.`            |BulFileDownload            |
 |Store Data from CSV to Database          |`Open each .csv file and store each record in database. Defined template for logbooks.`|BulkLogBook|
 |Search and Copy File          |`Performed a search and downloads the specified files from the path read in the .csv file.`|SearchCSVandCopy|
 

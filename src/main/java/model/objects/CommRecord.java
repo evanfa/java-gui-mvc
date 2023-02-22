@@ -14,6 +14,15 @@ public class CommRecord {
     public String originalReceived;
     public String commentsComm;
     public String referenceComm;
+    public String statusFilenet;
+
+    public String getStatusFilenet() {
+        return statusFilenet;
+    }
+
+    public void setStatusFilenet(String statusFilenet) {
+        this.statusFilenet = statusFilenet;
+    }
 
     public String getIdMatrix() {
         return idMatrix;

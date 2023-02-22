@@ -70,19 +70,26 @@ public class ConnectBd {
             If Query Contains Errors
              */
             {
-                String qrt = null;
-                String errorQry = e.toString();
-                Connection cn = startConnection_WAuth(InitStartup.DEFAULT_BD_NAME);
-                Statement st = cn.createStatement();
+                System.out.println("-------------------ERROR---------------------");
+                System.out.println("Error in Query: " + e);
+                System.out.println("Fail Query: " + qry);
 
-                qrt = "INSERT INTO [dbo].["+InitStartup.DEFAULT_ERROR_LOG+"](errordesc,inputdesc) VALUES (´" + errorQry + "´,´" + qry + "´)";
-                qrt = qrt.replace("'", "");
-                qrt = qrt.replace("´", "'");
+                try{
+                    String errorQry = e.toString();
+                    Connection cn = startConnection_WAuth(InitStartup.DEFAULT_BD_NAME);
+                    Statement st = cn.createStatement();
 
-                System.out.println("Error Query: " + qrt);
-                st.execute(qry);
-                st.closeOnCompletion();
-                cn.close();
+                    String qrt = "INSERT INTO [dbo].["+InitStartup.DEFAULT_ERROR_LOG+"](errordesc,inputdesc) VALUES (´" + errorQry + "´,´" + qry + "´)";
+                    qrt = qrt.replace("'", "");
+                    qrt = qrt.replace("´", "'");
+                    System.out.println("Error Query: " + qrt);
+                    st.execute(qrt, Statement.RETURN_GENERATED_KEYS);
+                    st.close();
+                    cn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                System.out.println("-------------------ERROR---------------------");
             }
         }
     }
