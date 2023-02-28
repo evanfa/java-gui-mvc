@@ -1,6 +1,6 @@
 package model.functions.search;
 
-import model.JTableTemplate_Download;
+import model.JTableTemplateDownload;
 import model.TableModelTemplate;
 import model.objects.Record;
 import startup.init.start.InitStartup;
@@ -15,7 +15,7 @@ public class SearchExec {
 
     private ArrayList<Record> resultQuery;
     private TableModelTemplate tableModel;
-    private JTableTemplate_Download tableDownloadModel;
+    private JTableTemplateDownload tableDownloadModel;
     private JTable srchResult_JTable;
     private TableColumnModel columnModel;
     
@@ -37,7 +37,7 @@ public class SearchExec {
                 /*------------------------------------------------*/
                 /*New table model Created when exist a result in current execution*/
                 /*------------------------------------------------*/
-                tableDownloadModel = new JTableTemplate_Download();
+                tableDownloadModel = new JTableTemplateDownload();
                 /*------------------------------------------------*/
 
                 tableModel.setListItemsFound(resultQuery);

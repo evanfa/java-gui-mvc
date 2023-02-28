@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class JTableTemplate_Download extends AbstractTableModel implements Observer {
+public class JTableTemplateDownload extends AbstractTableModel implements Observer {
     private final ArrayList<Download> downloadList = new ArrayList<Download>();
     private static final String[] columnNames = {
             "File Name", "Size in MB", "Progress",

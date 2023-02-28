@@ -1,6 +1,6 @@
 package view.display.main.form;
 
-import model.JTableTemplate_Download;
+import model.JTableTemplateDownload;
 import model.TableModelTemplate;
 import model.functions.search.StreamSearch;
 import model.objects.Record;
@@ -44,7 +44,7 @@ public class SearcherForm extends JFrame{
     private JTable srchResult_JTable;
     private TableColumnModel columnModel;
     private TableModelTemplate tableModel;
-    private JTableTemplate_Download tableDownloadModel;
+    private JTableTemplateDownload tableDownloadModel;
     private ArrayList<Record> resultSearch;
 
     public SearcherForm() {
@@ -113,7 +113,7 @@ public class SearcherForm extends JFrame{
                         /*------------------------------------------------*/
                         /*New table model Created when exist a result in current execution*/
                         /*------------------------------------------------*/
-                        tableDownloadModel = new JTableTemplate_Download();
+                        tableDownloadModel = new JTableTemplateDownload();
                         /*------------------------------------------------*/
                         //resultSearch.stream().forEach(System.out::println);
                         tableModel.setListItemsFound(resultSearch);

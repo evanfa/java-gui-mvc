@@ -3,7 +3,6 @@ package model.functions;
 import startup.init.start.InitStartup;
 import startup.init.vault.loader.utils.CSVProcessor;
 import startup.init.vault.loader.utils.FilesCopier;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ public class BulkFileDownloader {
         List<String> lstComms = new ArrayList<String>();
         int maxLenght = 0;
         int xlsCounter = 0;
-
         int counter = 0;
         
         try{
