@@ -38,7 +38,6 @@ public class FilesCopier {
         }
     }
 
-
     public static void fileCopier(File input, File output) {
         //System.out.println("Input: "+input);
         //System.out.println("Output: "+output);

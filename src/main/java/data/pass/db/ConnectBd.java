@@ -114,7 +114,7 @@ public class ConnectBd {
             con.close();
         } catch (Exception e) {
             System.out.println("Exception SQL: " + e);
-            JOptionPane.showMessageDialog(null, "SQL Exception: " + e, "Error - SQL Exception", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "SQL Exception: " + e, "Error - SQL Exception", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
         return tableExist;

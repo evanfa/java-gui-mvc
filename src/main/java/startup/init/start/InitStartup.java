@@ -225,4 +225,9 @@ public class InitStartup {
         System.out.println(getDefaultPathTvdr() + getDefaultPathTxtl() + getDefaultPathSdtt());
         System.out.println(getDefaultPathTopo());
     }*/
+
+    /*
+    Java Bin Path
+    keytool -import -noprompt -trustcacerts -alias https://www.tcenergy.com/ -file "C:\Users\fabio_rodriguez\OneDrive - TransCanada Corporation\Documents\IT\JODBC\_.sharepoint" -keystore cacerts
+    */
 }
