@@ -2,7 +2,6 @@ package startup.init.start;
 
 import data.pass.db.ConnectBd;
 import startup.init.vault.loader.POJOLoader;
-import startup.init.vault.loader.VaultLoader;
 import startup.init.vault.loader.obj.PathLoader;
 import startup.init.vault.loader.utils.CSVLoader;
 import startup.init.vault.loader.utils.SysSettingsLoader;
@@ -112,7 +111,7 @@ public class InitStartup {
             setDefaultPathCsv(DEFAULT_CSV_FILE);
         }
 
-        if (ConnectBd.executeTableVerification(VaultLoader.getDefaultDb(), VaultLoader.getDefaultTable())) {
+        if (ConnectBd.executeTableVerification(InitStartup.DEFAULT_BD_NAME, InitStartup.DEFAULT_TABLE_REPORT)) {
             System.out.println("Database found...Done");
         } else {
             JOptionPane.showMessageDialog(null, "The connection to Database is not available. Verify.", "DB Verification Error", JOptionPane.ERROR_MESSAGE);

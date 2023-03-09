@@ -18,33 +18,34 @@ public class FilesCopier {
     }
 
     private static void copyFileUsingStream(File source, File dest) throws IOException {
-        InputStream is = null;
-        OutputStream os = null;
+        //InputStream is = null;
+        //OutputStream os = null;
         try {
-            is = new FileInputStream(source);
-            os = new FileOutputStream(dest);
+            InputStream is = new FileInputStream(source);
+            OutputStream os = new FileOutputStream(dest);
             byte[] buffer = new byte[1024];
             int length;
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
             }
-        } finally {
             is.close();
             os.close();
+        } catch(Exception ext){
+            System.out.println("Error: "+ext);
+        } finally{
+           // is.close();
+           // os.close();
         }
     }
 
-    public static void fileCopier(File input, File output) {
 
+    public static void fileCopier(File input, File output) {
         //System.out.println("Input: "+input);
         //System.out.println("Output: "+output);
-
         try {
             if (input.exists()) {
-
+             copyFileUsingStream(input, output);
             }
-            copyFileUsingStream(input, output);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
