@@ -1,5 +1,5 @@
 .idea
-src/main/java/startup/init/start/InitStartup.java
 out
+src/main/java/startup/init/start/InitStartup.java
 src/main/java/startup/init/config/xml/paths_config.xml
 
