@@ -1,5 +1,6 @@
 .idea
 out
+*.class
 src/main/java/startup/init/start/InitStartup.java
 src/main/java/startup/init/config/xml/paths_config.xml
 
