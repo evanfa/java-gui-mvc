@@ -39,3 +39,33 @@ Four modules were created:
 # Search GUI Screencap
 ![GUI - File Search](https://i.imgur.com/z9ox8ma.png)
 
+# Configuration Parameters
+## MV Parameters
+Secure Authentication using JDBC:
+>-Djava.library.path="C:\folder_path\sqljdbc_9.4\enu\auth\x64"
+
+## Creation a .key and .cert with OpenSSL
+In the path: `C:\Program Files\Git\usr\bin>openssl.exe ` is available a open tool for creation certs and keys.
+Using the following command:
+>C:\Program Files\Git\usr\bin>openssl.exe req -x509 -nodes -sha256 -days 3650 -subj "/CN=Local" -newkey rsa:2048 -keyout "C:\path_destination\key_name.key" -out "C:\path_destination\cert_destination.crt"
+
+## Export a Cert to KeyStore for SSL Encryption
+The following command is required to setup a new certificate in order to SSL connections.
+>keytool -importcert -trustcacerts -file "C:\dir_path\tcenergy.crt" -alias "tc_cert" -keystore "C:\Program Files\Amazon Corretto\jdk19.0.2_7\lib\security\cacerts"
+>
+`Additional Info:` [Wiki - Keystore Repository](https://github.com/jrwhetse/jrwhetse.github.io/wiki/Java-Keystores)
+
+## Use SSL Poke to test Java SSL connection
+Java uses the cacerts file as its certificate authority to validate certificates used in https connections made by Java applications. It is useful to be able to verify that the cacerts file has the correct certificates added to it to connect securely and this is a common scenario when connecting to internal sites in a network that use an internal PKI to issue certificates for internal sites. Atlassian (the company that makes Jira and Confluence) has created a small Java program called SSL Poke to test this connectivity.
+>[SSLPoke Class](https://matthewdavis111.com/java/poke-ssl-test-java-certs/)
+>
+>[Atlassian Explanation ](https://confluence.atlassian.com/jira/connecting-to-ssl-services-117455.html)
+
+# Issues & Common Errors
+## Driver not properly configured for integrated authentication.
+`Error:`The driver could not establish a secure connection to SQL Server by using Secure Sockets Layer (SSL) encryption.
+
+>[Driver could not establish a secure connection](https://support.tibco.com/s/article/The-driver-could-not-establish-a-secure-connection-to-SQL-Server-by-using-Secure-Sockets-Layer-SSL-encryption-Error-SQL-Server-returned-an-incomplete-response)
+
+Download the Microsoft JDBC Driver 4.2 for SQL Server, a Type 4 JDBC driver that provides database connectivity through the standard JDBC application program interfaces (APIs) available in Java Platform, Enterprise Editions.
+>ODBC: [Microsoft JDBC Driver 4.2 for SQL Server](https://www.microsoft.com/en-us/download/details.aspx?id=54671)

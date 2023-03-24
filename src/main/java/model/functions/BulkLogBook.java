@@ -163,9 +163,7 @@
             }
         }
 
-
         public static void main(String[] args) throws SQLException, ClassNotFoundException {
             BulkLogBook bLogProcessing = new BulkLogBook();
         }
-
     }

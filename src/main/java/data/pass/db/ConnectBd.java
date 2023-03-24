@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.sql.*;
 /*
 -Djava.library.path="C:\Users\fabio_rodriguez\OneDrive - TransCanada Corporation\Documents\IT\JODBC\sqljdbc_9.4\enu\auth\x64"
+C:\Users\fabio_rodriguez\OneDrive - TransCanada Corporation\Documents\IT\JODBC\sqljdbc_9.4\enu\auth\x64
  */
 public class ConnectBd {
     /**
@@ -12,13 +13,14 @@ public class ConnectBd {
      *
      * @param db DatabaseName
      * @return Connection
+     * ;encrypt=true;trustServerCertificate=true;
      */
     public static Connection startConnection_WAuth(String db) {
         Connection con = null;
         try {
             Class.forName(InitStartup.SERVER_CLASS);
             System.out.println("Driver Loaded");
-            String jdbcUrl = "jdbc:sqlserver://" + InitStartup.DEFAULT_HOST + ":" + InitStartup.JDBC_PORT + ";databaseName=" + db + ";integratedSecurity=true";
+            String jdbcUrl = "jdbc:sqlserver://" + InitStartup.DEFAULT_HOST + ":" + InitStartup.JDBC_PORT + ";databaseName=" + db + ";integratedSecurity=true;";
             con = DriverManager.getConnection(jdbcUrl);
             //Statement stmt = con.createStatement();
             //stmt.executeQuery("SET NOCOUNT ON");
@@ -102,7 +104,7 @@ public class ConnectBd {
         boolean tableExist = false;
         try {
             Class.forName(InitStartup.SERVER_CLASS);
-            String jdbcUrl = "jdbc:sqlserver://" + InitStartup.DEFAULT_HOST + ":" + InitStartup.JDBC_PORT + ";databaseName=" + dbName + ";integratedSecurity=true";
+            String jdbcUrl = "jdbc:sqlserver://" + InitStartup.DEFAULT_HOST + ":" + InitStartup.JDBC_PORT + ";databaseName=" + dbName + ";integratedSecurity=true;";
             Connection con = DriverManager.getConnection(jdbcUrl);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT OBJECT_ID FROM sys.objects WHERE name = '" + tableName + "';");
