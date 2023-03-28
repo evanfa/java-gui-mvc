@@ -38,11 +38,13 @@
             File directoryPath = new File(InitStartup.DEFAULT_PATH_COMS);
             String[] contents = directoryPath.list();
 
+            assert contents != null;
             if (contents.length > 0) {
                 if (ConnectBd.executeTableVerification(InitStartup.DEFAULT_BD_NAME, InitStartup.DEFAULT_TABLE_REPORT)) {
 
                     Connection currentConnection = ConnectBd.startConnection_WAuth(InitStartup.DEFAULT_BD_NAME);
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    assert currentConnection != null;
                     Statement stmt = currentConnection.createStatement();
                     ResultSet rs = stmt.executeQuery(verifyQry);
 
@@ -72,7 +74,7 @@
                                             Cell cell = cellIterator.next();
 
                                             //Starting using the 6th row as a initial row
-                                            if(cell.getRowIndex()>=6){
+                                            if(cell.getRowIndex()>5){
 
                                                 if(cell.getColumnIndex()==1){
                                                     setValidRecord(RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_META_COM, cell.toString()));
