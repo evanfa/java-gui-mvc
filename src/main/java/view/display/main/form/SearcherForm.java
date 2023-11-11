@@ -56,7 +56,6 @@ public class SearcherForm extends JFrame{
     public void createUIComponents(){
         /*System Vars*/
         SysSettingsLoader.setMainPanel(mainContainerPanel);
-
         //UIManager.put("TabbedPane.selected", Color.red);
         //tabContainerPanel = new JTabbedPane();
 
@@ -64,7 +63,6 @@ public class SearcherForm extends JFrame{
         tabContainerPanel.addTab("Fast Search", ImgsLoader.getSearchIcon(), fastSearchForm, null);
         tabContainerPanel.addTab("Config", ImgsLoader.getConfgIcon(), configPanelForm, null);
         tabContainerPanel.setFocusable(false);
-
         /*Update Buttons*/
         updateAddButton(false);
         updateClearButton(false);
@@ -90,7 +88,6 @@ public class SearcherForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("CSV Search");
-
             }
         });
 
@@ -106,7 +103,6 @@ public class SearcherForm extends JFrame{
                     resultSearch = StreamSearch.execSearchInCSVtoRecord(inputSearch.getText());
                     if (!resultSearch.isEmpty() && resultSearch.size() > 0) {
                         System.out.println("Records Found: " + resultSearch.size());
-
                         /*New table model for display result data set*/
                         /*------------------------------------------------*/
                         tableModel = new TableModelTemplate();
@@ -117,31 +113,26 @@ public class SearcherForm extends JFrame{
                         /*------------------------------------------------*/
                         //resultSearch.stream().forEach(System.out::println);
                         tableModel.setListItemsFound(resultSearch);
-
                         /*-------------------SET COLORS-----------------------------*/
-
+                        /*
                         ColorTemplate.deepBlueMode_JPanel(mainContainerPanel);
                         ColorTemplate.deepBlueMode_JTabbedPanel(tabContainerPanel);
                         ColorTemplate.deepBlueMode_JPanel(fastSearchForm);
                         ColorTemplate.deepBlueMode_JPanel(resultContanierPanel);
-
+                         */
                         //ColorTemplate.deepBlueMode_JScrollPanel(scrollPanelContent);
-
                         //UIManager.put("TabbedPane.selected", Color.red);
                         //tabContainerPanel.getSelectedComponent().setFocusable(false);
-
-                        /*ColorTemplate.deepBlueMode_JTable(searchResult);
+                        /*
+                        ColorTemplate.deepBlueMode_JTable(searchResult);
                         ColorTemplate.deepBlueMode_JToolBar(pathToolBar);
-
                         ColorTemplate.deepBlueMode_JToolBar(actionsToolBar);
                         ColorTemplate.deepBlueMode_JToolBar(searcherToolBar);
                         ColorTemplate.deepBlueMode_JToolBar(footerToolBar);
-
                         ColorTemplate.deepBlueMode_JPanel(mainContainerPanel);
-
                          */
-
-                        /*ColorTemplate.deepBlueMode_JPanel(mainContainerPanel);
+                        /*
+                        ColorTemplate.deepBlueMode_JPanel(mainContainerPanel);
                         ColorTemplate.deepBlueMode_JButton(btnSearch);
                         ColorTemplate.deepBlueMode_JButton(addButton);
                         ColorTemplate.deepBlueMode_JButton(clearButton);
@@ -171,7 +162,6 @@ public class SearcherForm extends JFrame{
                         JOptionPane.showMessageDialog(null,"Empty Input Field", "Error",JOptionPane.ERROR_MESSAGE);
                         lblResultInfo.setText("Empty search field");
                     }
-
             }
         });
 

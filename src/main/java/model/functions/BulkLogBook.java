@@ -32,7 +32,7 @@
 
             String verifyQry = "SELECT COUNT(*) FROM [" + InitStartup.DEFAULT_BD_NAME + "].[dbo]." + InitStartup.DEFAULT_TABLE_COMS;
             //String insertQry = "INSERT INTO [dbo].[" + InitStartup.DEFAULT_TABLE_COMS + "](idfile,date_com,date_recipt,type_com,subject_com,author,received_ori,desc_com,references_com) VALUES (";
-            String insertQry = "INSERT INTO [dbo].[" + InitStartup.DEFAULT_TABLE_COMS + "](idfile,date_com,date_recipt,type_com,subject_com,author,received_ori,desc_com,status_filenet,references_com,id_permit) VALUES (";
+            String insertQry = "INSERT INTO [dbo].[" + InitStartup.DEFAULT_TABLE_COMS + "](idfile,date_com,date_recipt,type_com,subject_com,author,received_ori,desc_com,references_com,id_permit) VALUES (";
             CommRecord commItem = new CommRecord();
 
             File directoryPath = new File(InitStartup.DEFAULT_PATH_COMS);
@@ -72,18 +72,22 @@
 
                                         while (cellIterator.hasNext()) {
                                             Cell cell = cellIterator.next();
-
                                             //Starting using the 6th row as a initial row
-                                            if(cell.getRowIndex()>5){
-
+                                            if(cell.getRowIndex()>4){
                                                 if(cell.getColumnIndex()==1){
+                                                    //System.out.println("Row: "+cell.getRowIndex()+"Col: "+cell.getColumnIndex()+" & +Cell Val: "+cell.toString());
+                                                    //System.out.println("Valid Record: "+RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_META_COM, cell.toString()));
                                                     setValidRecord(RegexUtility.isRegexContainedIntoSingleString(InitStartup.REGEX_META_COM, cell.toString()));
                                                 }
                                                 //Validation for data between Row: 6 to Column: 11
                                                 if(isValidRecord() && cell.getColumnIndex()<12){
                                                     switch (cell.getColumnIndex()) {
                                                         case 0:
-                                                            commItem.setIdMatrix(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            if(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell)!=null){
+                                                                commItem.setIdMatrix(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell).replaceAll("\\r\\n|\\r|\\n", " "));
+                                                            }else{
+                                                                commItem.setIdMatrix(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            }
                                                             break;
                                                         case 1:
                                                             commItem.setFolioComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
@@ -98,23 +102,39 @@
                                                             commItem.setTypeComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
                                                             break;
                                                         case 5:
-                                                            commItem.setSubjectComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            if(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell)!=null){
+                                                                commItem.setSubjectComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell).replaceAll("\\r\\n|\\r|\\n", " "));
+                                                            }else{
+                                                                commItem.setSubjectComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            }
                                                             break;
                                                         case 6:
-                                                            commItem.setAuthorComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            if(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell)!=null){
+                                                                commItem.setAuthorComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell).replaceAll("\\r\\n|\\r|\\n", " "));
+                                                            }else{
+                                                                commItem.setAuthorComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            }
                                                             break;
                                                         case 7:
                                                             commItem.setOriginalReceived(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
                                                             break;
                                                         case 8:
-                                                            commItem.setCommentsComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            if(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell)!=null){
+                                                                commItem.setCommentsComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell).replaceAll("\\r\\n|\\r|\\n", " "));
+                                                            }else{
+                                                                commItem.setCommentsComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            }
                                                             break;
                                                         case 9:
                                                             commItem.setStatusFilenet(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
                                                             break;
                                                         case 10:
-                                                            commItem.setReferenceComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
-                                                            break;
+                                                            if(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell)!=null){
+                                                                commItem.setReferenceComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell).replaceAll("\\r\\n|\\r|\\n", " "));
+                                                            }else{
+                                                                commItem.setReferenceComm(POIApacheDataProcessor.setUpPOIDataType_Identifier(cell));
+                                                            }
+                                                           break;
                                                     }
                                                 }
 
@@ -132,7 +152,7 @@
                                                     commItem.getAuthorComm() + "','" +
                                                     commItem.getOriginalReceived() + "','" +
                                                     commItem.getCommentsComm() + "','" +
-                                                    commItem.getStatusFilenet() + "','" +
+                                                    //commItem.getStatusFilenet() + "','" +
                                                     commItem.getReferenceComm() + "','" +
                                                     commItem.getIdMatrix() + "')";
 
@@ -164,7 +184,6 @@
                 JOptionPane.showMessageDialog(null, "No files in folder: " + InitStartup.DEFAULT_PATH_COMS + ". Verify.", "Files not found", JOptionPane.ERROR_MESSAGE);
             }
         }
-
         public static void main(String[] args) throws SQLException, ClassNotFoundException {
             BulkLogBook bLogProcessing = new BulkLogBook();
         }

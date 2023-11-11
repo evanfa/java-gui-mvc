@@ -6,6 +6,7 @@ import java.sql.*;
 /*
 -Djava.library.path="C:\Users\fabio_rodriguez\OneDrive - TransCanada Corporation\Documents\IT\JODBC\sqljdbc_9.4\enu\auth\x64"
 C:\Users\fabio_rodriguez\OneDrive - TransCanada Corporation\Documents\IT\JODBC\sqljdbc_9.4\enu\auth\x64
+-Djava.library.path="C:\Users\fabio_rodriguez\OneDrive - TransCanada Corporation\Documents\IT\JODBC\sqljdbc_9.4\enu\auth\x64"
  */
 public class ConnectBd {
     /**
