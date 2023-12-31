@@ -1,10 +1,15 @@
 package model.functions.search;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import model.objects.Record;
 import startup.init.start.InitStartup;
 import startup.init.vault.loader.utils.RegexUtility;
 
 import java.util.ArrayList;
+
+import static startup.init.start.InitStartup.getRecordsInCSVFile;
 
 public class StreamSearch {
     private static int indexId = 0;
@@ -14,7 +19,7 @@ public class StreamSearch {
 
     public static  ArrayList<String> execSearchInCSV(String searchString){
         ArrayList<String> searchResultList = new ArrayList<>();
-        InitStartup.getRecordsInCSVFile().parallelStream().forEach(
+        getRecordsInCSVFile().parallelStream().forEach(
                 item->
                 {
                     if (RegexUtility.matchTextInString(item, searchString)!=null) {
@@ -28,7 +33,7 @@ public class StreamSearch {
     public static  ArrayList<Record> execSearchInCSVtoRecord(String searchString){
         ArrayList<Record> searchResultList = new ArrayList<>();
 
-        InitStartup.getRecordsInCSVFile().parallelStream().forEach(
+        getRecordsInCSVFile().parallelStream().forEach(
                 item->
                 {
                     if (RegexUtility.matchTextInString(item, searchString)!=null) {

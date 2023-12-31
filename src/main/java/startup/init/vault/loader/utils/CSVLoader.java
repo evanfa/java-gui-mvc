@@ -11,7 +11,13 @@ public class CSVLoader {
     private static final char DEFAULT_QUOTE = '"';
     private static final String COMMA_SEPARATOR = ",";
 
-
+    /**
+     * Function that retrieves and store whole data into an LinkedList from .csv file
+     * @param csvFilePath
+     * @param columnInput
+     * @return
+     * @throws FileNotFoundException
+     */
     public static LinkedList<String> getRowsFromCSVList(String csvFilePath, int columnInput) throws FileNotFoundException {
         //System.out.println("Path: " + csvFilePath);
         LinkedList<String> list = new LinkedList<String>();
@@ -26,6 +32,28 @@ public class CSVLoader {
             scanner.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     * Function that retrieves and store whole data into an ArrayList from .csv file
+     * @param csvFilePath
+     * @param columnInput
+     * @return
+     * @throws FileNotFoundException
+     */
+    public static ArrayList<String> getRowsFromCSVtoArrayList(String csvFilePath, int columnInput) throws FileNotFoundException {
+        ArrayList<String> list = new ArrayList<String>();
+        Scanner scanner = new Scanner(new File(csvFilePath));
+        try{
+               while(scanner.hasNextLine()){
+                   List<String> line = parseLine(scanner.nextLine());
+                   list.add(line.get(columnInput));
+               }
+            scanner.close();
+        }catch (Exception ext){
+            ext.printStackTrace();
         }
         return list;
     }
@@ -156,5 +184,4 @@ public class CSVLoader {
     public static List<String> parseLine(String cvsLine) {
         return parseLine(cvsLine, DEFAULT_SEPARATOR, DEFAULT_QUOTE);
     }
-
 }

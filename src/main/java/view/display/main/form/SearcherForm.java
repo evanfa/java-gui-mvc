@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class SearcherForm extends JFrame{
     private JPanel mainContainerPanel;
@@ -45,7 +46,14 @@ public class SearcherForm extends JFrame{
     private TableColumnModel columnModel;
     private TableModelTemplate tableModel;
     private JTableTemplateDownload tableDownloadModel;
-    private ArrayList<Record> resultSearch;
+    public static ArrayList<Record> resultSearch;
+
+    public static ArrayList<Record> getSearchResult() {
+        return resultSearch;
+    }
+
+    private ArrayList<Record> rsJavaResultSearch;
+    private JPanel downloadPanel;
 
     public SearcherForm() {
         setContentPane(mainContainerPanel);
@@ -61,6 +69,7 @@ public class SearcherForm extends JFrame{
 
         /*Tabs Settings*/
         tabContainerPanel.addTab("Fast Search", ImgsLoader.getSearchIcon(), fastSearchForm, null);
+        tabContainerPanel.addTab("Download", ImgsLoader.getConfgIcon(), downloadPanel, null);
         tabContainerPanel.addTab("Config", ImgsLoader.getConfgIcon(), configPanelForm, null);
         tabContainerPanel.setFocusable(false);
         /*Update Buttons*/
@@ -99,10 +108,11 @@ public class SearcherForm extends JFrame{
                 String inputValue = inputSearch.getText();
                 System.out.println("Input to Search: "+inputValue);
                 if(inputValue != null|| inputValue.length()>2) {
-
                     resultSearch = StreamSearch.execSearchInCSVtoRecord(inputSearch.getText());
+
                     if (!resultSearch.isEmpty() && resultSearch.size() > 0) {
                         System.out.println("Records Found: " + resultSearch.size());
+
                         /*New table model for display result data set*/
                         /*------------------------------------------------*/
                         tableModel = new TableModelTemplate();
@@ -169,7 +179,19 @@ public class SearcherForm extends JFrame{
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                //Model is not empty
+                if(searchResult.getRowCount() >0) {
+                    /*System.out.println("Selected: "+searchResult.getSelectedRow());
+                    ArrayList<String> selectItems= new ArrayList<String>();
+                    TableModelTemplate tmTemp = new TableModelTemplate();
 
+                    selectItems = tmTemp.getListSelectedItemsFound();
+
+                    for (String item:
+                         selectItems) {
+                        System.out.println("Selection: "+item);
+                    }*/
+                }
             }
         });
 
